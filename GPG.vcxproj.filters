@@ -47,14 +47,14 @@
     <Filter Include="MyPG\Tasks\Title">
       <UniqueIdentifier>{9b91ad59-5fab-4b3d-8169-b7c99ba28f98}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MyPG\Tasks\Ending">
-      <UniqueIdentifier>{86e5f466-0e58-4888-b822-ff4676a98c2e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MyPG\Tasks\Game">
       <UniqueIdentifier>{4832fbd4-d381-4787-a64e-e5037d62fce7}</UniqueIdentifier>
     </Filter>
     <Filter Include="MyPG\Tasks\Game\Item">
       <UniqueIdentifier>{94c0244e-a93b-4ac5-a6f2-97a1fc73af3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyPG\Tasks\Game\Ending">
+      <UniqueIdentifier>{86e5f466-0e58-4888-b822-ff4676a98c2e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -122,7 +122,7 @@
       <Filter>MyPG\Tasks\Game</Filter>
     </ClCompile>
     <ClCompile Include="Task_Ending.cpp">
-      <Filter>MyPG\Tasks\Ending</Filter>
+      <Filter>MyPG\Tasks\Game\Ending</Filter>
     </ClCompile>
     <ClCompile Include="Task_Map2D.cpp">
       <Filter>MyPG\Tasks\Game</Filter>
@@ -199,7 +199,7 @@
       <Filter>MyPG\Tasks\Game</Filter>
     </ClInclude>
     <ClInclude Include="Task_Ending.h">
-      <Filter>MyPG\Tasks\Ending</Filter>
+      <Filter>MyPG\Tasks\Game\Ending</Filter>
     </ClInclude>
     <ClInclude Include="Task_Map2D.h">
       <Filter>MyPG\Tasks\Game</Filter>

@@ -1,49 +1,49 @@
-#pragma warning(disable:4996)
+ï»¿#pragma warning(disable:4996)
 #pragma once
 //-----------------------------------------------------------------------------
-//ƒLƒƒƒ‰ƒNƒ^”Ä—pƒX[ƒp[ƒNƒ‰ƒX
+//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿æ±Žç”¨ã‚¹ãƒ¼ãƒ‘ãƒ¼ã‚¯ãƒ©ã‚¹
 //-----------------------------------------------------------------------------
 #include "GameEngine_Ver3_81.h"
 
 class BChara : public BTask
 {
-	//•ÏX•s‰ÂŸŸŸŸŸŸŸŸŸŸŸŸŸŸŸŸŸŸŸŸŸŸŸŸŸŸ
+	//å¤‰æ›´ä¸å¯â—†â—†â—†â—†â—†â—†â—†â—†â—†â—†â—†â—†â—†â—†â—†â—†â—†â—†â—†â—†â—†â—†â—†â—†â—†â—†
 public:
 	typedef shared_ptr<BChara>		SP;
 	typedef weak_ptr<BChara>		WP;
 public:
-	//•ÏX‰Âžžžžžžžžžžžžžžžžžžžžžžžžžžž
-	//ƒLƒƒƒ‰ƒNƒ^‹¤’Êƒƒ“ƒo•Ï”
-	ML::Vec2    pos;		//ƒLƒƒƒ‰ƒNƒ^ˆÊ’u
-	ML::Box2D   hitBase;	//‚ ‚½‚è”»’è”ÍˆÍ
-	ML::Vec2	moveVec;	//ˆÚ“®ƒxƒNƒgƒ‹
-	int			moveCnt;	//s“®ƒJƒEƒ“ƒ^
-	//¶‰E‚ÌŒü‚«i2D‰¡Ž‹“_ƒQ[ƒ€ê—pj
+	//å¤‰æ›´å¯â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å…±é€šãƒ¡ãƒ³ãƒå¤‰æ•°
+	ML::Vec2    pos;		//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ä½ç½®
+	ML::Box2D   hitBase;	//ã‚ãŸã‚Šåˆ¤å®šç¯„å›²
+	ML::Vec2	moveVec;	//ç§»å‹•ãƒ™ã‚¯ãƒˆãƒ«
+	int			moveCnt;	//è¡Œå‹•ã‚«ã‚¦ãƒ³ã‚¿
+	//å·¦å³ã®å‘ãï¼ˆ2Dæ¨ªè¦–ç‚¹ã‚²ãƒ¼ãƒ å°‚ç”¨ï¼‰
 	enum Angle_LRFB { Left, Right,Front,Back };
 	Angle_LRFB	angle_LRFB;
 	WP			target;
-	//ƒLƒƒƒ‰ƒNƒ^‚Ìs“®ó‘Ôƒtƒ‰ƒO
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®è¡Œå‹•çŠ¶æ…‹ãƒ•ãƒ©ã‚°
 	enum Motion
 	{
-		Unnon = -1,	//	–³Œø(Žg‚¦‚Ü‚¹‚ñj
-		Stand,		//	’âŽ~
-		Walk,		//	•às
-		//Attack,		//	UŒ‚
-		//Turn,		//³–ÊÚG
-		//Bound,		//ƒ_ƒ[ƒW‚ðŽó‚¯‚Ä‚«”ò‚ñ‚Å‚¢‚é
-		//Lose,		//Á‚¦‚éE¸“V
+		Unnon = -1,	//	ç„¡åŠ¹(ä½¿ãˆã¾ã›ã‚“ï¼‰
+		Stand,		//	åœæ­¢
+		Walk,		//	æ­©è¡Œ
+		//Attack,		//	æ”»æ’ƒ
+		//Turn,		//æ­£é¢æŽ¥è§¦
+		//Bound,		//ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’å—ã‘ã¦å¹ãé£›ã‚“ã§ã„ã‚‹
+		//Lose,		//æ¶ˆãˆã‚‹ãƒ»æ˜‡å¤©
 	};
-	Motion			motion;			//	Œ»Ý‚Ìs“®‚ðŽ¦‚·ƒtƒ‰ƒO
-	int				animCnt;		//ƒAƒjƒ[ƒVƒ‡ƒ“ƒJƒEƒ“ƒ^
-	float			maxSpeed;		//	ã‰º¶‰E•ûŒü‚Ö‚ÌˆÚ“®‚Ì‰ÁŽZ—Ê
-	float			decSpeed;		//	ã‰º¶‰E•ûŒü‚Ö‚ÌˆÚ“®‚ÌŒ¸Š—Ê
-	int hp;							//ƒLƒƒƒ‰ƒNƒ^‚Ìƒqƒbƒgƒ|ƒCƒ“ƒg
-	int unHitTime;					//ˆê’èŽžŠÔ–³“G
+	Motion			motion;			//	ç¾åœ¨ã®è¡Œå‹•ã‚’ç¤ºã™ãƒ•ãƒ©ã‚°
+	int				animCnt;		//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚«ã‚¦ãƒ³ã‚¿
+	float			maxSpeed;		//	ä¸Šä¸‹å·¦å³æ–¹å‘ã¸ã®ç§»å‹•ã®åŠ ç®—é‡
+	float			decSpeed;		//	ä¸Šä¸‹å·¦å³æ–¹å‘ã¸ã®ç§»å‹•ã®æ¸›è¡°é‡
+	int hp;							//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ãƒ’ãƒƒãƒˆãƒã‚¤ãƒ³ãƒˆ
+	int unHitTime;					//ä¸€å®šæ™‚é–“ç„¡æ•µ
 
-	//bool walkFlag;//•à‚¢‚Ä‚¢‚é‚©—§‚¿Ž~‚Ü‚Á‚Ä‚¢‚é‚©‚Ì”»’è
+	//bool walkFlag;//æ­©ã„ã¦ã„ã‚‹ã‹ç«‹ã¡æ­¢ã¾ã£ã¦ã„ã‚‹ã‹ã®åˆ¤å®š
 
-	//ƒƒ“ƒo•Ï”‚ÉÅ’áŒÀ‚Ì‰Šú‰»‚ðs‚¤
-	//ššƒƒ“ƒo•Ï”‚ð’Ç‰Á‚µ‚½‚ç•K‚¸‰Šú‰»‚à’Ç‰Á‚·‚éŽ–šš
+	//ãƒ¡ãƒ³ãƒå¤‰æ•°ã«æœ€ä½Žé™ã®åˆæœŸåŒ–ã‚’è¡Œã†
+	//â˜…â˜…ãƒ¡ãƒ³ãƒå¤‰æ•°ã‚’è¿½åŠ ã—ãŸã‚‰å¿…ãšåˆæœŸåŒ–ã‚‚è¿½åŠ ã™ã‚‹äº‹â˜…â˜…
 	BChara()
 		: pos(0, 0)
 		, hitBase(0, 0, 0, 0)
@@ -59,31 +59,31 @@ public:
 	}
 	virtual  ~BChara() {}
 
-	//ƒLƒƒƒ‰ƒNƒ^‹¤’Êƒƒ\ƒbƒh
-	//‚ß‚èž‚Ü‚È‚¢ˆÚ“®ˆ—
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å…±é€šãƒ¡ã‚½ãƒƒãƒ‰
+	//ã‚ã‚Šè¾¼ã¾ãªã„ç§»å‹•å‡¦ç†
 	virtual  void  CheckMove(ML::Vec2&  est_);
-	//‘«Œ³ÚG”»’è
+	//è¶³å…ƒæŽ¥è§¦åˆ¤å®š
 	virtual  bool  CheckFoot();
-	//“ªãÚG”»’è
+	//é ­ä¸ŠæŽ¥è§¦åˆ¤å®š
 	virtual  bool  CheckHead();
-	//³–ÊÚG”»’èiÄ“xƒrƒ…[ƒQ[ƒ€ê—pj
+	//æ­£é¢æŽ¥è§¦åˆ¤å®šï¼ˆå†åº¦ãƒ“ãƒ¥ãƒ¼ã‚²ãƒ¼ãƒ å°‚ç”¨ï¼‰
 	virtual bool CheckFront_LR();
-	//ƒ‚[ƒVƒ‡ƒ“‚ðXVi•ÏX‚È‚µ‚Ìê‡	false)
+	//ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã‚’æ›´æ–°ï¼ˆå¤‰æ›´ãªã—ã®å ´åˆ	false)
 	bool  UpdateMotion(Motion  nm_);
 
-	//	ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ\‘¢‘Ì
+	//	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æƒ…å ±æ§‹é€ ä½“
 	struct DrawInfo {
 		ML::Box2D		draw, src;
 		ML::Color		color;
 	};
-	//UŒ‚î•ñ
+	//æ”»æ’ƒæƒ…å ±
 	struct AttackInfo {
-		int power;		//UŒ‚‚ÌˆÐ—Í
-		int hit;		//–½’†¸“x
-		int element;	//UŒ‚‚Ì‘®«
+		int power;		//æ”»æ’ƒã®å¨åŠ›
+		int hit;		//å‘½ä¸­ç²¾åº¦
+		int element;	//æ”»æ’ƒã®å±žæ€§
 	};
-	//ÚGŽž‚Ì‰ž“šˆ—i‚±‚êŽ©‘Ì‚Íƒ_ƒ~[‚Ì‚æ‚¤‚È‚à‚Ìj
+	//æŽ¥è§¦æ™‚ã®å¿œç­”å‡¦ç†ï¼ˆã“ã‚Œè‡ªä½“ã¯ãƒ€ãƒŸãƒ¼ã®ã‚ˆã†ãªã‚‚ã®ï¼‰
 	virtual void Received(BChara* from_, AttackInfo at_);
-	//ÚG”»’è
+	//æŽ¥è§¦åˆ¤å®š
 	virtual bool CheckHit(const ML::Box2D& hit);
 };

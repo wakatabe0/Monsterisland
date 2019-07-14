@@ -1,15 +1,15 @@
 ﻿#pragma warning(disable:4996)
 #pragma once
 //-------------------------------------------------------------------
-//プレイヤ
+//タイトル画面
 //-------------------------------------------------------------------
-#include "BChara.h"
+#include "GameEngine_Ver3_81.h"
 
-namespace  Player
+namespace  Title
 {
 	//タスクに割り当てるグループ名と固有名
-	const  string  defGroupName("プレイヤ");	//グループ名
-	const  string  defName("仮");	//タスク名
+	const  string  defGroupName("タイトル");	//グループ名
+	const  string  defName("NoName");		//タスク名
 	//-------------------------------------------------------------------
 	class  Resource
 	{
@@ -26,7 +26,7 @@ namespace  Player
 		DG::Image::SP  img;
 	};
 	//-------------------------------------------------------------------
-	class  Object : public  BChara
+	class  Object : public  BTask
 	{
 	//変更不可◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
 	public:
@@ -47,16 +47,6 @@ namespace  Player
 	//変更可◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
 	public:
 		//追加したい変数・メソッドはここに追加する
-		//BCharaに持たせていない変数・メソッドのみここに書く
-		DI::GamePad::SP  controller;
-
-		//思考＆状況判断(ステータス決定）
-		void  Think();
-		//モーションに対応した処理
-		void  Move();
-		//アニメーション制御
-		BChara::DrawInfo  Anim();
-		//接触時の応答処理（必ず受け身の処理として実装する）
-		void Received(BChara* from_, AttackInfo at_);
+		int				logoPosY;		//タイトル画像スクロール用カウンタ
 	};
 }
