@@ -103,6 +103,7 @@
     <ClCompile Include="Task_Game.cpp" />
     <ClCompile Include="Task_Map2D.cpp" />
     <ClCompile Include="Task_Player.cpp" />
+    <ClCompile Include="Task_Shot01.cpp" />
     <ClCompile Include="Task_Title.cpp" />
     <ClCompile Include="WinMain.cpp" />
     <ClCompile Include="xnacollision.cpp" />
@@ -131,6 +132,7 @@
     <ClInclude Include="Task_Game.h" />
     <ClInclude Include="Task_Map2D.h" />
     <ClInclude Include="Task_Player.h" />
+    <ClInclude Include="Task_Shot01.h" />
     <ClInclude Include="Task_Title.h" />
     <ClInclude Include="xnacollision.h" />
   </ItemGroup>

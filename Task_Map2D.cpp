@@ -171,19 +171,19 @@ namespace  Map2D
 		//範囲内の障害物を探す
 		for (int y = sy; y <= ey; ++y) {
 			for (int x = sx; x <= ex; ++x) {
-				if (0 == this->arr[y][x]) {
+				if (0 == this->arr[y][x]) {//木左上
 					return true;
 				}
-				else if (1 == this->arr[y][x]) {
+				else if (1 == this->arr[y][x]) {//木右上
 					return true;
 				}
-				else if (8 == this->arr[y][x]) {
+				else if (8 == this->arr[y][x]) {//木左下
 					return true;
 				}
-				else if (9 == this->arr[y][x]) {
+				else if (9 == this->arr[y][x]) {//木右下
 					return true;
 				}
-				else if (63 == this->arr[y][x]) {
+				else if (63 == this->arr[y][x]) {//草むら
 					return true;
 				}
 			}
