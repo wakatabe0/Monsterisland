@@ -1,31 +1,31 @@
-
+ï»¿
 //-----------------------------------------------------------------------------
-//ƒLƒƒƒ‰ƒNƒ^”Ä—pƒX[ƒp[ƒNƒ‰ƒX
+//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿æ±Žç”¨ã‚¹ãƒ¼ãƒ‘ãƒ¼ã‚¯ãƒ©ã‚¹
 //-----------------------------------------------------------------------------
 #include "BChara.h"
 #include  "MyPG.h"
 #include  "Task_Map2D.h"
 
 //-----------------------------------------------------------------------------
-//ƒ‚[ƒVƒ‡ƒ“‚ðXVi•ÏX‚È‚µ‚Ìê‡	false)
+//ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã‚’æ›´æ–°ï¼ˆå¤‰æ›´ãªã—ã®å ´åˆ	false)
 bool  BChara::UpdateMotion(Motion  nm_)
 {
 	if (nm_ == this->motion) {
 		return  false;
 	}
 	else {
-		this->motion = nm_;		//ƒ‚[ƒVƒ‡ƒ“•ÏX
-		this->moveCnt = 0;		//s“®ƒJƒEƒ“ƒ^ƒNƒŠƒA
-		this->animCnt = 0;		//ƒAƒjƒ[ƒVƒ‡ƒ“ƒJƒEƒ“ƒ^‚ÌƒNƒŠƒA
+		this->motion = nm_;		//ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³å¤‰æ›´
+		this->moveCnt = 0;		//è¡Œå‹•ã‚«ã‚¦ãƒ³ã‚¿ã‚¯ãƒªã‚¢
+		this->animCnt = 0;		//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚«ã‚¦ãƒ³ã‚¿ã®ã‚¯ãƒªã‚¢
 		return  true;
 	}
 }
 
 //-----------------------------------------------------------------------------
-//“ªãÚG”»’è
+//é ­ä¸ŠæŽ¥è§¦åˆ¤å®š
 bool  BChara::CheckHead()
 {
-	//‚ ‚½‚è”»’è‚ðŠî‚É‚µ‚Ä“ªã‹éŒ`‚ð¶¬
+	//ã‚ãŸã‚Šåˆ¤å®šã‚’åŸºã«ã—ã¦é ­ä¸ŠçŸ©å½¢ã‚’ç”Ÿæˆ
 	ML::Box2D  head(this->hitBase.x,
 		this->hitBase.y - 1,
 		this->hitBase.w,
@@ -33,19 +33,19 @@ bool  BChara::CheckHead()
 	head.Offset((int)this->pos.x, (int)this->pos.y);
 
 
-	auto   map = ge->GetTask_One_GN<Map2D::Object>("ƒtƒB[ƒ‹ƒh", "ƒ}ƒbƒv");
-	if (nullptr == map) { return false; }//ƒ}ƒbƒv‚ª–³‚¯‚ê‚Î”»’è‚µ‚È‚¢(o—ˆ‚È‚¢j
+	auto   map = ge->GetTask_One_GN<Map2D::Object>("ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰", "ãƒžãƒƒãƒ—");
+	if (nullptr == map) { return false; }//ãƒžãƒƒãƒ—ãŒç„¡ã‘ã‚Œã°åˆ¤å®šã—ãªã„(å‡ºæ¥ãªã„ï¼‰
 	return map->CheckHit(head);
 }
 //-----------------------------------------------------------------------------
-//‚ß‚èž‚Ü‚È‚¢ˆÚ“®ˆ—
+//ã‚ã‚Šè¾¼ã¾ãªã„ç§»å‹•å‡¦ç†
 void BChara::CheckMove(ML::Vec2&  e_)
 {
-	//ƒ}ƒbƒv‚ª‘¶Ý‚·‚é‚©’²‚×‚Ä‚©‚çƒAƒNƒZƒX
-	auto   map = ge->GetTask_One_GN<Map2D::Object>("ƒtƒB[ƒ‹ƒh", "ƒ}ƒbƒv");
-	if (nullptr == map) { return; }//ƒ}ƒbƒv‚ª–³‚¯‚ê‚Î”»’è‚µ‚È‚¢(o—ˆ‚È‚¢j
+	//ãƒžãƒƒãƒ—ãŒå­˜åœ¨ã™ã‚‹ã‹èª¿ã¹ã¦ã‹ã‚‰ã‚¢ã‚¯ã‚»ã‚¹
+	auto   map = ge->GetTask_One_GN<Map2D::Object>("ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰", "ãƒžãƒƒãƒ—");
+	if (nullptr == map) { return; }//ãƒžãƒƒãƒ—ãŒç„¡ã‘ã‚Œã°åˆ¤å®šã—ãªã„(å‡ºæ¥ãªã„ï¼‰
 
-								   //‰¡Ž²‚É‘Î‚·‚éˆÚ“®
+								   //æ¨ªè»¸ã«å¯¾ã™ã‚‹ç§»å‹•
 	while (e_.x != 0) {
 		float  preX = this->pos.x;
 		if (e_.x >= 1) { this->pos.x += 1;		e_.x -= 1; }
@@ -53,11 +53,11 @@ void BChara::CheckMove(ML::Vec2&  e_)
 		else { this->pos.x += e_.x;		e_.x = 0; }
 		ML::Box2D  hit = this->hitBase.OffsetCopy(this->pos);
 		if (true == map->CheckHit(hit)) {
-			this->pos.x = preX;		//ˆÚ“®‚ðƒLƒƒƒ“ƒZƒ‹
+			this->pos.x = preX;		//ç§»å‹•ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			break;
 		}
 	}
-	//cŽ²‚É‘Î‚·‚éˆÚ“®
+	//ç¸¦è»¸ã«å¯¾ã™ã‚‹ç§»å‹•
 	while (e_.y != 0) {
 		float  preY = this->pos.y;
 		if (e_.y >= 1) { this->pos.y += 1;		e_.y -= 1; }
@@ -65,31 +65,31 @@ void BChara::CheckMove(ML::Vec2&  e_)
 		else { this->pos.y += e_.y;		e_.y = 0; }
 		ML::Box2D  hit = this->hitBase.OffsetCopy(this->pos);
 		if (true == map->CheckHit(hit)) {
-			this->pos.y = preY;		//ˆÚ“®‚ðƒLƒƒƒ“ƒZƒ‹
+			this->pos.y = preY;		//ç§»å‹•ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			break;
 		}
 	}
 }
 //-----------------------------------------------------------------------------
-//‘«Œ³ÚG”»’è
+//è¶³å…ƒæŽ¥è§¦åˆ¤å®š
 bool  BChara::CheckFoot()
 {
-	//‚ ‚½‚è”»’è‚ðŠî‚É‚µ‚Ä‘«Œ³‹éŒ`‚ð¶¬
+	//ã‚ãŸã‚Šåˆ¤å®šã‚’åŸºã«ã—ã¦è¶³å…ƒçŸ©å½¢ã‚’ç”Ÿæˆ
 	ML::Box2D  foot(this->hitBase.x,
 		this->hitBase.y + this->hitBase.h,
 		this->hitBase.w,
 		1);
 	foot.Offset(this->pos);
 
-	auto   map = ge->GetTask_One_GN<Map2D::Object>("ƒtƒB[ƒ‹ƒh", "ƒ}ƒbƒv");
-	if (nullptr == map) { return false; }//ƒ}ƒbƒv‚ª–³‚¯‚ê‚Î”»’è‚µ‚È‚¢(o—ˆ‚È‚¢j
+	auto   map = ge->GetTask_One_GN<Map2D::Object>("ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰", "ãƒžãƒƒãƒ—");
+	if (nullptr == map) { return false; }//ãƒžãƒƒãƒ—ãŒç„¡ã‘ã‚Œã°åˆ¤å®šã—ãªã„(å‡ºæ¥ãªã„ï¼‰
 	return map->CheckHit(foot);
 }
 //-----------------------------------------------------------------------------
-//‘«Œ³ÚG”»’è
+//è¶³å…ƒæŽ¥è§¦åˆ¤å®š
 bool  BChara::CheckFront_LR()
 {
-	//‚ ‚½‚è”»’è‚ðŠî‚É‚µ‚Ä‹éŒ`‚ð¶¬
+	//ã‚ãŸã‚Šåˆ¤å®šã‚’åŸºã«ã—ã¦çŸ©å½¢ã‚’ç”Ÿæˆ
 	if (this->angle_LRFB == Left) {
 		ML::Box2D  front_LR(
 			this->hitBase.x - 1,
@@ -99,8 +99,8 @@ bool  BChara::CheckFront_LR()
 		);
 		front_LR.Offset(this->pos);
 
-		auto   map = ge->GetTask_One_GN<Map2D::Object>("ƒtƒB[ƒ‹ƒh", "ƒ}ƒbƒv");
-		if (nullptr == map) { return false; }//ƒ}ƒbƒv‚ª–³‚¯‚ê‚Î”»’è‚µ‚È‚¢(o—ˆ‚È‚¢j
+		auto   map = ge->GetTask_One_GN<Map2D::Object>("ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰", "ãƒžãƒƒãƒ—");
+		if (nullptr == map) { return false; }//ãƒžãƒƒãƒ—ãŒç„¡ã‘ã‚Œã°åˆ¤å®šã—ãªã„(å‡ºæ¥ãªã„ï¼‰
 		return map->CheckHit(front_LR);
 	}
 	else {
@@ -112,20 +112,20 @@ bool  BChara::CheckFront_LR()
 			);
 		front_LR.Offset(this->pos);
 
-		auto   map = ge->GetTask_One_GN<Map2D::Object>("ƒtƒB[ƒ‹ƒh", "ƒ}ƒbƒv");
-		if (nullptr == map) { return false; }//ƒ}ƒbƒv‚ª–³‚¯‚ê‚Î”»’è‚µ‚È‚¢(o—ˆ‚È‚¢j
+		auto   map = ge->GetTask_One_GN<Map2D::Object>("ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰", "ãƒžãƒƒãƒ—");
+		if (nullptr == map) { return false; }//ãƒžãƒƒãƒ—ãŒç„¡ã‘ã‚Œã°åˆ¤å®šã—ãªã„(å‡ºæ¥ãªã„ï¼‰
 		return map->CheckHit(front_LR);
 	}
 
 }
 //-----------------------------------------------------------------------------
-//ÚGŽž‚Ì‰ž“šˆ—i‚±‚êŽ©‘Ì‚Íƒ_ƒ~[‚Ì‚æ‚¤‚È‚à‚Ìj
+//æŽ¥è§¦æ™‚ã®å¿œç­”å‡¦ç†ï¼ˆã“ã‚Œè‡ªä½“ã¯ãƒ€ãƒŸãƒ¼ã®ã‚ˆã†ãªã‚‚ã®ï¼‰
 void BChara::Received(BChara* from_, AttackInfo at_)
 {
-	ML::MsgBox("Received ŽÀ‘•‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ");
+	ML::MsgBox("Received å®Ÿè£…ã•ã‚Œã¦ã„ã¾ã›ã‚“");
 }
 //-----------------------------------------------------------------------------
-//ÚG”»’è
+//æŽ¥è§¦åˆ¤å®š
 bool  BChara::CheckHit(const ML::Box2D& hit_)
 {
 	ML::Box2D me = this->hitBase.OffsetCopy(this->pos);

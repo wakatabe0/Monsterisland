@@ -1,4 +1,4 @@
-//-------------------------------------------------------------------
+ï»¿//-------------------------------------------------------------------
 //
 //-------------------------------------------------------------------
 #include  "MyPG.h"
@@ -8,29 +8,29 @@ namespace  Map2D
 {
 	Resource::WP  Resource::instance;
 	//-------------------------------------------------------------------
-	//ƒŠƒ\[ƒX‚Ì‰Šú‰»
+	//ãƒªã‚½ãƒ¼ã‚¹ã®åˆæœŸåŒ–
 	bool  Resource::Initialize()
 	{
 		return true;
 	}
 	//-------------------------------------------------------------------
-	//ƒŠƒ\[ƒX‚Ì‰ğ•ú
+	//ãƒªã‚½ãƒ¼ã‚¹ã®è§£æ”¾
 	bool  Resource::Finalize()
 	{
 		return true;
 	}
 	//-------------------------------------------------------------------
-	//u‰Šú‰»vƒ^ƒXƒN¶¬‚É‚P‰ñ‚¾‚¯s‚¤ˆ—
+	//ã€ŒåˆæœŸåŒ–ã€ã‚¿ã‚¹ã‚¯ç”Ÿæˆæ™‚ã«ï¼‘å›ã ã‘è¡Œã†å‡¦ç†
 	bool  Object::Initialize()
 	{
-		//ƒX[ƒp[ƒNƒ‰ƒX‰Šú‰»
+		//ã‚¹ãƒ¼ãƒ‘ãƒ¼ã‚¯ãƒ©ã‚¹åˆæœŸåŒ–
 		__super::Initialize(defGroupName, defName, true);
-		//ƒŠƒ\[ƒXƒNƒ‰ƒX¶¬orƒŠƒ\[ƒX‹¤—L
+		//ãƒªã‚½ãƒ¼ã‚¹ã‚¯ãƒ©ã‚¹ç”Ÿæˆorãƒªã‚½ãƒ¼ã‚¹å…±æœ‰
 		this->res = Resource::Create();
 
-		//šƒf[ƒ^‰Šú‰»
+		//â˜…ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 		this->render2D_Priority[1] = 0.9f;
-		//ƒ}ƒbƒv‚Ìƒ[ƒƒNƒŠƒA
+		//ãƒãƒƒãƒ—ã®ã‚¼ãƒ­ã‚¯ãƒªã‚¢
 		for (int y = 0; y < 100; ++y) {
 			for (int x = 0; x < 100; ++x) {
 				this->arr[y][x] = 0;
@@ -40,45 +40,45 @@ namespace  Map2D
 		this->sizeY = 0;
 		this->hitBase = ML::Box2D(0, 0, 0, 0);
 
-		//ƒ}ƒbƒvƒ`ƒbƒvî•ñ‚Ì‰Šú‰»
+		//ãƒãƒƒãƒ—ãƒãƒƒãƒ—æƒ…å ±ã®åˆæœŸåŒ–
 		for (int c = 0; c < 64; ++c) {
 			int  x = (c % 8);
 			int  y = (c / 8);
 			this->chip[c] = ML::Box2D(x * 64, y * 64, 64, 64);
 		}
 		
-		//šƒ^ƒXƒN‚Ì¶¬
+		//â˜…ã‚¿ã‚¹ã‚¯ã®ç”Ÿæˆ
 
 		return  true;
 	}
 	//-------------------------------------------------------------------
-	//uI—¹vƒ^ƒXƒNÁ–Å‚É‚P‰ñ‚¾‚¯s‚¤ˆ—
+	//ã€Œçµ‚äº†ã€ã‚¿ã‚¹ã‚¯æ¶ˆæ»…æ™‚ã«ï¼‘å›ã ã‘è¡Œã†å‡¦ç†
 	bool  Object::Finalize()
 	{
-		//šƒf[ƒ^•ƒ^ƒXƒN‰ğ•ú
+		//â˜…ãƒ‡ãƒ¼ã‚¿ï¼†ã‚¿ã‚¹ã‚¯è§£æ”¾
 		this->img.reset();
 
 		if (!ge->QuitFlag() && this->nextTaskCreate) {
-			//šˆø‚«Œp‚¬ƒ^ƒXƒN‚Ì¶¬
+			//â˜…å¼•ãç¶™ãã‚¿ã‚¹ã‚¯ã®ç”Ÿæˆ
 		}
 
 		return  true;
 	}
 	//-------------------------------------------------------------------
-	//uXVv‚PƒtƒŒ[ƒ€–ˆ‚És‚¤ˆ—
+	//ã€Œæ›´æ–°ã€ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ æ¯ã«è¡Œã†å‡¦ç†
 	void  Object::UpDate()
 	{
 	}
 	//-------------------------------------------------------------------
-	//u‚Q‚c•`‰æv‚PƒtƒŒ[ƒ€–ˆ‚És‚¤ˆ—
+	//ã€Œï¼’ï¼¤æç”»ã€ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ æ¯ã«è¡Œã†å‡¦ç†
 	void  Object::Render2D_AF()
 	{
-		//ƒJƒƒ‰‚ªŠ®‘S‚Éƒ}ƒbƒvŠO‚ğw‚µ‚Ä‚¢‚é‚©’²‚×‚é
+		//ã‚«ãƒ¡ãƒ©ãŒå®Œå…¨ã«ãƒãƒƒãƒ—å¤–ã‚’æŒ‡ã—ã¦ã„ã‚‹ã‹èª¿ã¹ã‚‹
 		if (false == this->hitBase.Hit(ge->camera2D)) {
-			return; //Š®‘S‚ÉŠO‚Éo‚Ä‚¢‚½‚ç‚»‚Ì“_‚Å•`‰æˆ—‚ğæ‚è‚â‚ß‚é
+			return; //å®Œå…¨ã«å¤–ã«å‡ºã¦ã„ãŸã‚‰ãã®æ™‚ç‚¹ã§æç”»å‡¦ç†ã‚’å–ã‚Šã‚„ã‚ã‚‹
 		}
 
-		//ƒJƒƒ‰‚Æƒ}ƒbƒv‚ªd‚È‚Á‚Ä‚¢‚é”ÍˆÍ‚¾‚¯‚Ì‹éŒ`‚ğì‚é
+		//ã‚«ãƒ¡ãƒ©ã¨ãƒãƒƒãƒ—ãŒé‡ãªã£ã¦ã„ã‚‹ç¯„å›²ã ã‘ã®çŸ©å½¢ã‚’ä½œã‚‹
 		RECT  c = {
 			ge->camera2D.x,
 			ge->camera2D.y,
@@ -89,53 +89,53 @@ namespace  Map2D
 			this->hitBase.y,
 			this->hitBase.x + this->hitBase.w,
 			this->hitBase.y + this->hitBase.h };
-		//‚Q‚Â‚Ì‹éŒ`‚Ìd‚È‚Á‚Ä‚¢‚é”ÍˆÍ‚¾‚¯‚Ì‹éŒ`‚ğ‹‚ß‚é
+		//ï¼’ã¤ã®çŸ©å½¢ã®é‡ãªã£ã¦ã„ã‚‹ç¯„å›²ã ã‘ã®çŸ©å½¢ã‚’æ±‚ã‚ã‚‹
 		RECT  isr;
 		isr.left = max(c.left, m.left);
 		isr.top = max(c.top, m.top);
 		isr.right = min(c.right, m.right);
 		isr.bottom = min(c.bottom, m.bottom);
 
-		//ƒ‹[ƒv”ÍˆÍ‚ğŒˆ’è
+		//ãƒ«ãƒ¼ãƒ—ç¯„å›²ã‚’æ±ºå®š
 		int sx, sy, ex, ey;
 		sx = isr.left / 32;
 		sy = isr.top / 32;
 		ex = (isr.right - 1) / 32;
 		ey = (isr.bottom - 1) / 32;
 
-		//‰æ–Ê“à‚Ì”ÍˆÍ‚¾‚¯•`‰æ
+		//ç”»é¢å†…ã®ç¯„å›²ã ã‘æç”»
 		for (int y = sy; y <= ey; ++y) {
 			for (int x = sx; x <= ex; ++x) {
 				ML::Box2D  draw(0, 0, 32, 32);
-				draw.Offset(x * 32, y * 32);	//•\¦ˆÊ’u‚ğ’²®
+				draw.Offset(x * 32, y * 32);	//è¡¨ç¤ºä½ç½®ã‚’èª¿æ•´
 				
-				//ƒXƒNƒ[ƒ‹‘Î‰
+				//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å¯¾å¿œ
 				draw.Offset(-ge->camera2D.x, -ge->camera2D.y);
 				this->img->Draw(draw, this->chip[this->arr[y][x]]);
 			}
 		}
 	}
 	//-------------------------------------------------------------------
-	//ƒ}ƒbƒv“Ç‚İ‚İ
+	//ãƒãƒƒãƒ—èª­ã¿è¾¼ã¿
 	bool  Object::Load(const  string&  fpath_) 
 	{
-		//ƒtƒ@ƒCƒ‹‚ğŠJ‚­i“Ç‚İ‚İj
+		//ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ãï¼ˆèª­ã¿è¾¼ã¿ï¼‰
 		ifstream   fin(fpath_);
-		if (!fin) { return  false; }//“Ç‚İ‚İ¸”s
+		if (!fin) { return  false; }//èª­ã¿è¾¼ã¿å¤±æ•—
 
 
-		//ƒ`ƒbƒvƒtƒ@ƒCƒ‹–¼‚Ì“Ç‚İ‚İ‚ÆA‰æ‘œ‚Ìƒ[ƒh
+		//ãƒãƒƒãƒ—ãƒ•ã‚¡ã‚¤ãƒ«åã®èª­ã¿è¾¼ã¿ã¨ã€ç”»åƒã®ãƒ­ãƒ¼ãƒ‰
 		string   chipFileName, chipFilePath;
 		fin >> chipFileName;
 		chipFilePath = "./data/image/" + chipFileName;
 		this->img = DG::Image::Create(chipFilePath);
 
 
-		//ƒ}ƒbƒv”z—ñƒTƒCƒY‚Ì“Ç‚İ‚İ
+		//ãƒãƒƒãƒ—é…åˆ—ã‚µã‚¤ã‚ºã®èª­ã¿è¾¼ã¿
 		fin >> this->sizeX >> this->sizeY;
 		this->hitBase = ML::Box2D(0, 0, this->sizeX * 32, this->sizeY * 32);
 
-		//ƒ}ƒbƒv”z—ñƒf[ƒ^‚Ì“Ç‚İ‚İ
+		//ãƒãƒƒãƒ—é…åˆ—ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿
 		for (int y = 0; y < this->sizeY; ++y) {
 			for (int x = 0; x < this->sizeX; ++x) {
 				fin >> this->arr[y][x];
@@ -146,29 +146,29 @@ namespace  Map2D
 		return true;
 	}
 	//-------------------------------------------------------------------
-	//‚ ‚½‚è”»’è
+	//ã‚ãŸã‚Šåˆ¤å®š
 	bool  Object::CheckHit(const  ML::Box2D&  hit_)
 	{
 		RECT  r = { hit_.x, hit_.y, hit_.x + hit_.w, hit_.y + hit_.h };
-		//‹éŒ`‚ªƒ}ƒbƒvŠO‚Éo‚Ä‚¢‚½‚çáŠQ•¨‚É“–‚½‚Á‚½‚±‚Æ‚É‚·‚é
+		//çŸ©å½¢ãŒãƒãƒƒãƒ—å¤–ã«å‡ºã¦ã„ãŸã‚‰éšœå®³ç‰©ã«å½“ãŸã£ãŸã“ã¨ã«ã™ã‚‹
 		RECT  m = {
 			this->hitBase.x,
 			this->hitBase.y,
 			this->hitBase.x + this->hitBase.w,
 			this->hitBase.y + this->hitBase.h };
-		if (r.left   < m.left) { r.left = m.left; }//¶‚É”ò‚Ño‚µ‚Ä‚¢‚é
-		if (r.top    < m.top) { r.top = m.top; }//ã‚É”ò‚Ño‚µ‚Ä‚¢‚é
-		if (r.right  > m.right) { r.right = m.right; }//‰E‚É”ò‚Ño‚µ‚Ä‚¢‚é
-		if (r.bottom > m.bottom) { r.bottom = m.bottom; }//‰º‚É”ò‚Ño‚µ‚Ä‚¢‚é
+		if (r.left   < m.left) { r.left = m.left; }//å·¦ã«é£›ã³å‡ºã—ã¦ã„ã‚‹
+		if (r.top    < m.top) { r.top = m.top; }//ä¸Šã«é£›ã³å‡ºã—ã¦ã„ã‚‹
+		if (r.right  > m.right) { r.right = m.right; }//å³ã«é£›ã³å‡ºã—ã¦ã„ã‚‹
+		if (r.bottom > m.bottom) { r.bottom = m.bottom; }//ä¸‹ã«é£›ã³å‡ºã—ã¦ã„ã‚‹
 
-		//ƒ‹[ƒv”ÍˆÍ’²®
+		//ãƒ«ãƒ¼ãƒ—ç¯„å›²èª¿æ•´
 		int sx, sy, ex, ey;
 		sx = r.left / 32;
 		sy = r.top / 32;
 		ex = (r.right - 1) / 32;
 		ey = (r.bottom - 1) / 32;
 
-		//”ÍˆÍ“à‚ÌáŠQ•¨‚ğ’T‚·
+		//ç¯„å›²å†…ã®éšœå®³ç‰©ã‚’æ¢ã™
 		for (int y = sy; y <= ey; ++y) {
 			for (int x = sx; x <= ex; ++x) {
 				if (0 == this->arr[y][x]) {
@@ -191,10 +191,10 @@ namespace  Map2D
 		return false;
 	}
 	//-------------------------------------------------------------------
-	//ƒ}ƒbƒvŠO‚ğŒ©‚¹‚È‚¢‚æ‚¤‚ÉƒJƒƒ‰‚ğˆÊ’u’²®‚·‚é
+	//ãƒãƒƒãƒ—å¤–ã‚’è¦‹ã›ãªã„ã‚ˆã†ã«ã‚«ãƒ¡ãƒ©ã‚’ä½ç½®èª¿æ•´ã™ã‚‹
 	void  Object::adjustCameraPos()
 	{
-		//ƒJƒƒ‰‚Æƒ}ƒbƒv‚Ì”ÍˆÍ‚ğ—pˆÓ
+		//ã‚«ãƒ¡ãƒ©ã¨ãƒãƒƒãƒ—ã®ç¯„å›²ã‚’ç”¨æ„
 		RECT  c = {
 			ge->camera2D.x,
 			ge->camera2D.y,
@@ -206,31 +206,31 @@ namespace  Map2D
 			this->hitBase.x + this->hitBase.w,
 			this->hitBase.y + this->hitBase.h };
 
-		//ƒJƒƒ‰‚ÌˆÊ’u‚ğ’²®
+		//ã‚«ãƒ¡ãƒ©ã®ä½ç½®ã‚’èª¿æ•´
 		if (c.right  > m.right) { ge->camera2D.x = m.right - ge->camera2D.w; }
 		if (c.bottom > m.bottom) { ge->camera2D.y = m.bottom - ge->camera2D.h; }
 		if (c.left < m.left) { ge->camera2D.x = m.left; }
 		if (c.top  < m.top) { ge->camera2D.y = m.top; }
-		//ƒ}ƒbƒv‚ªƒJƒƒ‰‚æ‚è¬‚³‚¢ê‡
+		//ãƒãƒƒãƒ—ãŒã‚«ãƒ¡ãƒ©ã‚ˆã‚Šå°ã•ã„å ´åˆ
 		if (this->hitBase.w < ge->camera2D.w) { ge->camera2D.x = m.left; }
 		if (this->hitBase.h < ge->camera2D.h) { ge->camera2D.y = m.top; }
 	}
 
-	//šššššššššššššššššššššššššššššššššššššššššš
-	//ˆÈ‰º‚ÍŠî–{“I‚É•ÏX•s—v‚Èƒƒ\ƒbƒh
-	//šššššššššššššššššššššššššššššššššššššššššš
+	//â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…
+	//ä»¥ä¸‹ã¯åŸºæœ¬çš„ã«å¤‰æ›´ä¸è¦ãªãƒ¡ã‚½ãƒƒãƒ‰
+	//â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…
 	//-------------------------------------------------------------------
-	//ƒ^ƒXƒN¶¬‘‹Œû
+	//ã‚¿ã‚¹ã‚¯ç”Ÿæˆçª“å£
 	Object::SP  Object::Create(bool  flagGameEnginePushBack_)
 	{
 		Object::SP  ob = Object::SP(new  Object());
 		if (ob) {
 			ob->me = ob;
 			if (flagGameEnginePushBack_) {
-				ge->PushBack(ob);//ƒQ[ƒ€ƒGƒ“ƒWƒ“‚É“o˜^
+				ge->PushBack(ob);//ã‚²ãƒ¼ãƒ ã‚¨ãƒ³ã‚¸ãƒ³ã«ç™»éŒ²
 			}
 			if (!ob->B_Initialize()) {
-				ob->Kill();//ƒCƒjƒVƒƒƒ‰ƒCƒY‚É¸”s‚µ‚½‚çKill
+				ob->Kill();//ã‚¤ãƒ‹ã‚·ãƒ£ãƒ©ã‚¤ã‚ºã«å¤±æ•—ã—ãŸã‚‰Kill
 			}
 			return  ob;
 		}
@@ -251,7 +251,7 @@ namespace  Map2D
 	//-------------------------------------------------------------------
 	Object::Object() {	}
 	//-------------------------------------------------------------------
-	//ƒŠƒ\[ƒXƒNƒ‰ƒX‚Ì¶¬
+	//ãƒªã‚½ãƒ¼ã‚¹ã‚¯ãƒ©ã‚¹ã®ç”Ÿæˆ
 	Resource::SP  Resource::Create()
 	{
 		if (auto sp = instance.lock()) {
