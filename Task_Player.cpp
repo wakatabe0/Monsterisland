@@ -4,7 +4,7 @@
 #include  "MyPG.h"
 #include  "Task_Player.h"
 #include  "Task_Map2D.h"
-//#include "Task_Shot01.h"
+#include "Task_Shot01.h"
 
 namespace  Player
 {
@@ -41,7 +41,6 @@ namespace  Player
 		this->maxSpeed = 3.5f;		//最大移動速度（横）
 		this->decSpeed = 0.5f;		//速度の減衰量
 		this->hp = 5;//プレイヤのヒットポイント
-		//this->walkFlag = false;
 		//★タスクの生成
 
 		return  true;
@@ -110,11 +109,11 @@ namespace  Player
 	//「２Ｄ描画」１フレーム毎に行う処理
 	void  Object::Render2D_AF()
 	{
-		if (this->unHitTime > 0) {
-			if ((this->unHitTime / 4) % 2 == 0) {
-				return;//8フレーム中4フレーム画像を表示しない
-			}
-		}
+		//if (this->unHitTime > 0) {
+		//	if ((this->unHitTime / 4) % 2 == 0) {
+		//		return;//8フレーム中4フレーム画像を表示しない
+		//	}
+		//}
 
 		BChara::DrawInfo  di = this->Anim();
 		di.draw.Offset(this->pos);
@@ -138,14 +137,16 @@ namespace  Player
 			if (inp.LStick.R.on) { nm = Walk; }
 			if (inp.LStick.U.on) { nm = Walk; }
 			if (inp.LStick.D.on) { nm = Walk; }
+			if (inp.B4.down) { nm = Attack; }//弾の発射
 			break;
 		case  Walk:		//歩いている
 			if (inp.LStick.L.off&&inp.LStick.R.off
 				&&inp.LStick.U.off&&inp.LStick.D.off) { nm = Stand; }
+			if (inp.B4.down) { nm = Attack; }
 			break;
-		//case  Attack:	//攻撃中
-		//	if (moveCnt == 8) { nm = Stand; }
-		//	break;
+		case  Attack:	//攻撃中
+			if (moveCnt == 8) { nm = Stand; }
+			break;
 		//case Bound: //ダメージを受けて吹き飛んでいる
 		//	if (this->moveCnt >= 12 && this->CheckFoot() == true) {nm = Stand;}
 		//	break;
@@ -183,46 +184,49 @@ namespace  Player
 		//モーション毎に固有の処理
 		switch (this->motion) {
 		case  Stand:	//立っている
-			//this->walkFlag = false;//基本はfalse,歩いている時だけ変更する
 			break;
 		case  Walk:		//歩いている
 			if (inp.LStick.L.on) {
 				this->angle_LRFB = Left;
-				//this->walkFlag = true;
 				this->moveVec.x=-this->maxSpeed;
 			}
 			if (inp.LStick.R.on) {
 				this->angle_LRFB = Right;
-				//this->walkFlag = true;
 				this->moveVec.x = this->maxSpeed;
 			}
 			if (inp.LStick.U.on) {
 				this->angle_LRFB = Front;
-				//this->walkFlag = true;
 				this->moveVec.y =- this->maxSpeed;
 			}
 			if (inp.LStick.D.on){
 				this->angle_LRFB = Back;
-				//this->walkFlag = true;
 				this->moveVec.y = this->maxSpeed;
 			}
 			break;
-		//case  Attack:	//攻撃中
-			//放物線を描きながら撃つ
-			//if (moveCnt == 4) {
-			//	//弾を生成
-			//	auto shot = Shot01::Object::Create(true);
-			//	shot->pos = this->pos;
-			//	if (this->angle_LR == Right) {
-			//		shot->moveVec = ML::Vec2(+5, -6);
-			//		shot->pos += ML::Vec2(20, 0);
-			//	}
-			//	else {
-			//		shot->moveVec = ML::Vec2(-5, -6);
-			//		shot->pos += ML::Vec2(-20, 0);
-			//	}
-			//}
-			//break;
+		case  Attack:	//攻撃中
+			//弾を発射
+			if (moveCnt == 4) {
+				//弾を生成
+				auto shot = Shot01::Object::Create(true);
+				shot->pos = this->pos;
+				if (this->angle_LRFB == Right) {
+					shot->moveVec = ML::Vec2(5, 0);
+					shot->pos += ML::Vec2(20, 0);
+				}
+				else if(this->angle_LRFB==Left){
+					shot->moveVec = ML::Vec2(-5, 0);
+					shot->pos += ML::Vec2(-20, 0);
+				}
+				else if(this->angle_LRFB==Front){
+					shot->moveVec = ML::Vec2(0, -5);
+					shot->pos += ML::Vec2(0, -20);
+				}
+				else {
+					shot->moveVec = ML::Vec2(0, 5);
+					shot->pos += ML::Vec2(0, 20);
+				}
+			}
+			break;
 		}
 	}
 	//-----------------------------------------------------------------------------
@@ -271,22 +275,18 @@ namespace  Player
 			{ ML::Box2D(-16, -16, 32, 32), ML::Box2D(128, 192, 64, 64), defColor },//後ろ向き歩行（右足）//11
 		};
 		BChara::DrawInfo  rtv;
-		//int  work;
 		int anim[4] = { 1,0,1,2 };//アニメーションパターン
 		switch (this->motion) {
 		//default:		rtv = imageTable[1];	break;
 		//	停止----------------------------------------------------------------------------
 		case  Stand:	
-			//if (walkFlag==false) {
 				if (this->angle_LRFB == Back) { rtv = imageTable[1]; }
 				if (this->angle_LRFB == Left) { rtv = imageTable[4]; }
 				if (this->angle_LRFB == Right) { rtv = imageTable[7]; }
 				if (this->angle_LRFB == Front) { rtv = imageTable[10]; }
-			//}
 			break;
 		//	歩行----------------------------------------------------------------------------
 		case  Walk:
-				//if (walkFlag == true) {
 			    if (this->angle_LRFB == Back) {
 					rtv = imageTable[anim[animCnt / 8 % 4]];
 				}
@@ -300,10 +300,13 @@ namespace  Player
 					rtv = imageTable[anim[animCnt / 8 % 4] + 9];
 				}
 			
-			//}
-			/*work = this->animCnt / 8;
-			work %= 12;
-			rtv = imageTable[work + 1];*/
+			break;
+			//	攻撃----------------------------------------------------------------------------
+		case  Attack:
+			if (this->angle_LRFB == Back) { rtv = imageTable[2]; }
+			if (this->angle_LRFB == Left) { rtv = imageTable[3]; }
+			if (this->angle_LRFB == Right) { rtv = imageTable[8]; }
+			if (this->angle_LRFB == Front) { rtv = imageTable[9]; }
 			break;
 		//	ダメージ---------------------------------------------------------------------
 	/*	case
