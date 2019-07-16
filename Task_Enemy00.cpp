@@ -1,5 +1,5 @@
-//-------------------------------------------------------------------
-//“G00iƒXƒ‰ƒCƒ€
+ï»¿//-------------------------------------------------------------------
+//æ•µ00ï¼ˆã‚¹ãƒ©ã‚¤ãƒ 
 //-------------------------------------------------------------------
 #include  "MyPG.h"
 #include  "Task_Enemy00.h"
@@ -8,79 +8,76 @@ namespace  Enemy00
 {
 	Resource::WP  Resource::instance;
 	//-------------------------------------------------------------------
-	//ƒŠƒ\[ƒX‚Ì‰Šú‰»
+	//ãƒªã‚½ãƒ¼ã‚¹ã®åˆæœŸåŒ–
 	bool  Resource::Initialize()
 	{
-		this->img = DG::Image::Create("./data/image/Enemy00.png");
+		this->img = DG::Image::Create("./data/image/enemy1.png");
 		return true;
 	}
 	//-------------------------------------------------------------------
-	//ƒŠƒ\[ƒX‚Ì‰ğ•ú
+	//ãƒªã‚½ãƒ¼ã‚¹ã®è§£æ”¾
 	bool  Resource::Finalize()
 	{
 		this->img.reset();
 		return true;
 	}
 	//-------------------------------------------------------------------
-	//u‰Šú‰»vƒ^ƒXƒN¶¬‚É‚P‰ñ‚¾‚¯s‚¤ˆ—
+	//ã€ŒåˆæœŸåŒ–ã€ã‚¿ã‚¹ã‚¯ç”Ÿæˆæ™‚ã«ï¼‘å›ã ã‘è¡Œã†å‡¦ç†
 	bool  Object::Initialize()
 	{
-		//ƒX[ƒp[ƒNƒ‰ƒX‰Šú‰»
+		//ã‚¹ãƒ¼ãƒ‘ãƒ¼ã‚¯ãƒ©ã‚¹åˆæœŸåŒ–
 		__super::Initialize(defGroupName, defName, true);
-		//ƒŠƒ\[ƒXƒNƒ‰ƒX¶¬orƒŠƒ\[ƒX‹¤—L
+		//ãƒªã‚½ãƒ¼ã‚¹ã‚¯ãƒ©ã‚¹ç”Ÿæˆorãƒªã‚½ãƒ¼ã‚¹å…±æœ‰
 		this->res = Resource::Create();
-		//šƒf[ƒ^‰Šú‰»
+		//â˜…ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 		this->render2D_Priority[1] = 0.6f;
-		this->hitBase = ML::Box2D(-28, -22, 56, 45);
-		this->angle_LR = Left;
+		this->hitBase = ML::Box2D(-16, -16, 32, 32);
+		this->angle_LRFB = Back;
 		this->motion = Stand;
-		this->maxSpeed = 2.0f;	//Å‘åˆÚ“®‘¬“xi‰¡j
-		this->addSpeed = 0.7f;	//•às‰Á‘¬“xi’n–Ê‚Ì‰e‹¿‚Å‚ ‚é’ö“x‘Å‚¿Á‚³‚ê‚é
-		this->decSpeed = 0.5f;	//Ú’nó‘Ô‚Ì‚Æ‚«‚Ì‘¬“xŒ¸Š—Êi–€C
-		this->maxFallSpeed = 10.0f;//Å‘å—‰º‘¬“x
-		this->jumpPow = -6.0f;	//ƒWƒƒƒ“ƒv—Íi‰‘¬j
-		this->gravity = ML::Gravity(32) * 5;//d—Í‰Á‘¬“x&ŠÔ‘¬“x‚É‚æ‚é‰ÁZ—Ê
-		this->hp = 20;//ƒGƒlƒ~[‚Ìƒqƒbƒgƒ|ƒCƒ“ƒg
-		//šƒ^ƒXƒN‚Ì¶¬
+		this->maxSpeed = 2.0f;	//æœ€å¤§ç§»å‹•é€Ÿåº¦ï¼ˆæ¨ªï¼‰
+		this->decSpeed = 0.5f;	//æ¥åœ°çŠ¶æ…‹ã®ã¨ãã®é€Ÿåº¦æ¸›è¡°é‡ï¼ˆæ‘©æ“¦
+		this->hp = 3;//ã‚¨ãƒãƒŸãƒ¼ã®ãƒ’ãƒƒãƒˆãƒã‚¤ãƒ³ãƒˆ
+		srand((unsigned int)time(NULL));
+		//â˜…ã‚¿ã‚¹ã‚¯ã®ç”Ÿæˆ
 		return  true;
 	}
 	//-------------------------------------------------------------------
-	//uI—¹vƒ^ƒXƒNÁ–Å‚É‚P‰ñ‚¾‚¯s‚¤ˆ—
+	//ã€Œçµ‚äº†ã€ã‚¿ã‚¹ã‚¯æ¶ˆæ»…æ™‚ã«ï¼‘å›ã ã‘è¡Œã†å‡¦ç†
 	bool  Object::Finalize()
 	{
-		//šƒf[ƒ^•ƒ^ƒXƒN‰ğ•ú
+		//â˜…ãƒ‡ãƒ¼ã‚¿ï¼†ã‚¿ã‚¹ã‚¯è§£æ”¾
 
 
 		if (!ge->QuitFlag() && this->nextTaskCreate) {
-			//šˆø‚«Œp‚¬ƒ^ƒXƒN‚Ì¶¬
+			//â˜…å¼•ãç¶™ãã‚¿ã‚¹ã‚¯ã®ç”Ÿæˆ
 		}
 
 		return  true;
 	}
 	//-------------------------------------------------------------------
-	//uXVv‚PƒtƒŒ[ƒ€–ˆ‚És‚¤ˆ—
+	//ã€Œæ›´æ–°ã€ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ æ¯ã«è¡Œã†å‡¦ç†
 	void  Object::UpDate()
 	{
 		this->moveCnt++;
 		this->animCnt++;
-		//vlEó‹µ”»’f
+		//æ€è€ƒãƒ»çŠ¶æ³åˆ¤æ–­
 		this->Think();
-		//Œ»ƒ‚[ƒVƒ‡ƒ“‚É‘Î‰‚µ‚½§Œä
+		//ç¾ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã«å¯¾å¿œã—ãŸåˆ¶å¾¡
 		this->Move();
-		//‚ß‚è‚Ü‚È‚¢ˆÚ“®
+		//ã‚ã‚Šè¾¼ã¾ãªã„ç§»å‹•
 		ML::Vec2 est = this->moveVec;
 		this->CheckMove(est);
 
-		//“–‚½‚è”»’è
+		//å½“ãŸã‚Šåˆ¤å®š
 		{
 			ML::Box2D me = this->hitBase.OffsetCopy(this->pos);
-			auto targets = ge->GetTask_Group_G<BChara>("ƒvƒŒƒCƒ„");
+			auto targets = ge->GetTask_Group_G<BChara>("ãƒ—ãƒ¬ã‚¤ãƒ¤");
 			for (auto it = targets->begin();
 				it != targets->end();
 				++it) {
-				//‘Šè‚ÉÚG‚Ì—L–³‚ğŠm”F‚³‚¹‚é
+				//ç›¸æ‰‹ã«æ¥è§¦ã®æœ‰ç„¡ã‚’ç¢ºèªã•ã›ã‚‹
 				if ((*it)->CheckHit(me)) {
-					//‘Šè‚Éƒ_ƒ[ƒW‚Ìˆ—‚ğs‚í‚¹‚é
+					//ç›¸æ‰‹ã«ãƒ€ãƒ¡ãƒ¼ã‚¸ã®å‡¦ç†ã‚’è¡Œã‚ã›ã‚‹
 					BChara::AttackInfo at = { 1,0,0 };
 					(*it)->Received(this, at);
 					break;
@@ -89,179 +86,257 @@ namespace  Enemy00
 		}
 	}
 	//--------------------------------------------------------------------
-	//ÚG‚Ì‰“šˆ—i•K‚¸ó‚¯g‚Ìˆ—‚Æ‚µ‚ÄÀ‘•‚·‚éj
+	//æ¥è§¦æ™‚ã®å¿œç­”å‡¦ç†ï¼ˆå¿…ãšå—ã‘èº«ã®å‡¦ç†ã¨ã—ã¦å®Ÿè£…ã™ã‚‹ï¼‰
 	void Object::Received(BChara* from_, AttackInfo at_)
 	{
 
-		this->hp -= at_.power;	//‰¼ˆ—
+		this->hp -= at_.power;	//ä»®å‡¦ç†
 		if (this->hp <= 0) {
 			this->Kill();
 		}
 
-		//from_‚ÍUŒ‚‚µ‚Ä‚«‚½‘ŠèAƒJƒEƒ“ƒ^[‚È‚Ç‚Å‹t‚Éƒ_ƒ[ƒW‚ğ—^‚¦‚½‚¢‚Æ‚«‚Ég‚¤
+		//from_ã¯æ”»æ’ƒã—ã¦ããŸç›¸æ‰‹ã€ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ãªã©ã§é€†ã«ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’ä¸ãˆãŸã„ã¨ãã«ä½¿ã†
 	}
 	//-------------------------------------------------------------------
-	//u‚Q‚c•`‰æv‚PƒtƒŒ[ƒ€–ˆ‚És‚¤ˆ—
+	//ã€Œï¼’ï¼¤æç”»ã€ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ æ¯ã«è¡Œã†å‡¦ç†
 	void  Object::Render2D_AF()
 	{
 		BChara::DrawInfo di = this->Anim();
 		di.draw.Offset(this->pos);
-		//ƒXƒNƒ[ƒ‹‘Î‰
+		//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å¯¾å¿œ
 		di.draw.Offset(-ge->camera2D.x, -ge->camera2D.y);
 		this->res->img->Draw(di.draw, di.src);
 	}
 	//-------------------------------------------------------------------
-	//vl•ó‹µ”»’f@ƒ‚[ƒVƒ‡ƒ“Œˆ’è
+	//æ€è€ƒï¼†çŠ¶æ³åˆ¤æ–­ã€€ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³æ±ºå®š
 	void Object::Think()
 	{
-		BChara::Motion nm = this->motion; //‚Æ‚è‚ ‚¦‚¸¡‚Ìó‘Ô‚ğw’è
+		BChara::Motion nm = this->motion; //ã¨ã‚Šã‚ãˆãšä»Šã®çŠ¶æ…‹ã‚’æŒ‡å®š
 
-		//vli“ü—Íj‚âó‹µ‚É‰‚¶‚Äƒ‚[ƒVƒ‡ƒ“‚ğ•ÏX‚·‚é‚±‚Æ‚ğ–Ú“I‚Æ‚µ‚Ä‚¢‚éB
-		//ƒ‚[ƒVƒ‡ƒ“‚Ì•ÏXˆÈŠO‚Ìˆ—‚Ís‚í‚È‚¢
+		//æ€è€ƒï¼ˆå…¥åŠ›ï¼‰ã‚„çŠ¶æ³ã«å¿œã˜ã¦ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å¤‰æ›´ã™ã‚‹ã“ã¨ã‚’ç›®çš„ã¨ã—ã¦ã„ã‚‹ã€‚
+		//ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®å¤‰æ›´ä»¥å¤–ã®å‡¦ç†ã¯è¡Œã‚ãªã„
 		switch (nm) {
-		case Stand:	//—§‚Á‚Ä‚¢‚é
+		case Stand:	//ç«‹ã£ã¦ã„ã‚‹
 			nm = Walk;
-			if (this->CheckFront_LR() == true) { nm = Turn; }
-			if (this->CheckFoot() == false) { nm = Fall; }//‘«Œ³@áŠQ@–³‚µ
+			if (this->CheckFront_LRFB() == true) { nm = Turn; }
+			//if (this->CheckFoot() == false) { nm = Fall; }//è¶³å…ƒã€€éšœå®³ã€€ç„¡ã—
 			break;
-		case Walk:	//•à‚¢‚Ä‚¢‚é
-			if (this->CheckFront_LR() == true) { nm = Turn; }
-			if (this->CheckFoot() == false) { nm = Fall; }//‘«Œ³@áŠQ@–³‚µ
+		case Walk:	//æ­©ã„ã¦ã„ã‚‹
+			if (this->CheckFront_LRFB() == true) { nm = Turn; }
+			//if (this->CheckFoot() == false) { nm = Fall; }//è¶³å…ƒã€€éšœå®³ã€€ç„¡ã—
 			break;
-		case Turn:	//•ûŒü“]Š·
+		case Turn:	//æ–¹å‘è»¢æ›
 			if (this->moveCnt >= 5) { nm = Stand; }
 			break;
-		case Jump:	//ã¸’†
-			if (this->moveVec.y >= 0) { nm = Fall; }
-			break;
-		case Fall:	//—‰º’†
-			if (this->CheckFoot() == true) { nm = Stand; }
-			break;
-		case Attack://UŒ‚’†
-			break;
-		case TakeOff://”ò‚Ñ—§‚¿
-			break;
-		case Landing://’…’n
-			if (this->CheckFoot() == false) { nm = Fall; }//‘«Œ³@áŠQ@–³‚µ
+		case Attack://æ”»æ’ƒä¸­
 			break;
 		}
-		//ƒ‚[ƒVƒ‡ƒ“XV
+		//ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³æ›´æ–°
 		this->UpdateMotion(nm);
 	}
 	//-------------------------------------------------------------------
-	//ƒ‚[ƒVƒ‡ƒ“‚É‘Î‰‚µ‚½ˆ—
-	//iƒ‚[ƒVƒ‡ƒ“‚Í•ÏX‚µ‚È‚¢j
+	//ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã«å¯¾å¿œã—ãŸå‡¦ç†
+	//ï¼ˆãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã¯å¤‰æ›´ã—ãªã„ï¼‰
 	void Object::Move()
 	{
-		//d—Í‰Á‘¬
+		//é‡åŠ›åŠ é€Ÿ
 		switch (this->motion) {
 		default:
-			//ã¸’†‚à‚µ‚­‚Í‘«Œ³‚É’n–Ê‚ª–³‚¢
-			if (this->moveVec.y < 0 ||
-				this->CheckFoot() == false) {
-				this->moveVec.y =
-					min(this->moveVec.y + this->gravity, this->maxFallSpeed);
-			}
-			//’n–Ê‚ÉÚG‚µ‚Ä‚¢‚é
-			else {
-				this->moveVec.y = 0.0f;
-			}
 			break;
-			//d—Í‰Á‘¬‚ğ–³Œø‚©‚·‚é•K—v‚ª‚ ‚éƒ‚[ƒVƒ‡ƒ“‚Í‰º‚Écase‚ğ‘‚­iŒ»İ‘ÎÛ–³‚µj
+			//é‡åŠ›åŠ é€Ÿã‚’ç„¡åŠ¹ã‹ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã¯ä¸‹ã«caseã‚’æ›¸ãï¼ˆç¾åœ¨å¯¾è±¡ç„¡ã—ï¼‰
 		case Unnon: break;
 		}
 		switch (this->motion) {
 		default:
 			if (this->moveVec.x < 0) {
-				this->moveVec.x = min(this->moveVec.x + this->decSpeed, 0);
+				this->moveVec.x = 
+					min(this->moveVec.x + this->decSpeed, 0);
+			}
+			else  {
+				this->moveVec.x =
+					max(this->moveVec.x - this->decSpeed, 0);
+			}
+			if (this->moveVec.y < 0) {
+				this->moveVec.y = 
+					min(this->moveVec.y + this->decSpeed, 0);
 			}
 			else {
-				this->moveVec.x = max(this->moveVec.x - this->decSpeed, 0);
+				this->moveVec.y =
+					max(this->moveVec.y - this->decSpeed, 0);
 			}
 			break;
-			//ˆÚ“®‘¬“xŒ¸Š‚ğ–³Œø‰»‚·‚é•K—v‚ª‚ ‚éƒ‚[ƒVƒ‡ƒ“‚Í‰º‚Écase‚ğ‘‚­iŒ»İ‘ÎÛ–³‚µj
+			//ç§»å‹•é€Ÿåº¦æ¸›è¡°ã‚’ç„¡åŠ¹åŒ–ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã¯ä¸‹ã«caseã‚’æ›¸ãï¼ˆç¾åœ¨å¯¾è±¡ç„¡ã—ï¼‰
 		case Unnon:	break;
 		}
 		//-------------------------------------------------------------------
-		//ƒ‚[ƒVƒ‡ƒ“‚²‚Æ‚ÉŒÅ—L‚Ìˆ—
+		//ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã”ã¨ã«å›ºæœ‰ã®å‡¦ç†
 		switch (this->motion){
-		case Stand:	//—§‚Á‚Ä‚¢‚é
+		case Stand:	//ç«‹ã£ã¦ã„ã‚‹
 			break;
-		case Walk:	//•à‚¢‚Ä‚¢‚é
-			if (this->angle_LR == Left) {
-				this->moveVec.x =
-					max(-this->maxSpeed, this->moveVec.x - this->addSpeed);
+		case Walk:	//æ­©ã„ã¦ã„ã‚‹
+			if (this->angle_LRFB == Left) {
+				this->moveVec.x = -this->maxSpeed;
 			}
-			if (this->angle_LR == Right) {
-				this->moveVec.x =
-					min(+this->maxSpeed, this->moveVec.x + this->addSpeed);
+			if (this->angle_LRFB == Right) {
+				this->moveVec.x = +this->maxSpeed;
 			}
-			break;
-		case Fall:	//—‰º’†
-			if (this->angle_LR == Left) {
-				this->moveVec.x =
-					max(-this->maxSpeed, this->moveVec.x - this->addSpeed);
+			if (this->angle_LRFB == Front) {
+				this->moveVec.y = -this->maxSpeed;
 			}
-			if (this->angle_LR == Right) {
-				this->moveVec.x =
-					min(+this->maxSpeed, this->moveVec.x + this->addSpeed);
+			if (this->angle_LRFB == Back) {
+				this->moveVec.y = +this->maxSpeed;
 			}
 			break;
-		case Jump:	//ã¸’†
+		case Attack://æ”»æ’ƒä¸­
 			break;
-		case Attack://UŒ‚’†
-			break;
-		case Turn://•ûŒü“]Š·
+		case Turn://æ–¹å‘è»¢æ›
 			if (this->moveCnt == 3) {
-				if (this->angle_LR == Left) { this->angle_LR = Right; }
-				else { this->angle_LR = Left; }
+				int ran = rand() % 3;
+				if (this->angle_LRFB == Left)
+				{		
+					switch (ran)
+					{
+					case 0:
+						this->angle_LRFB = Right;
+						break;
+					case 1:
+						this->angle_LRFB = Back;
+						break;
+					case 2:
+						this->angle_LRFB = Front;
+						break;
+
+					}
+				}
+				else if (this->angle_LRFB == Right)
+				{
+					switch (ran)
+					{
+					case 0:
+						this->angle_LRFB = Left;
+						break;
+					case 1:
+						this->angle_LRFB = Back;
+						break;
+					case 2:
+						this->angle_LRFB = Front;
+						break;
+					}
+				}
+				else if (this->angle_LRFB == Front)
+				{
+					switch (ran)
+					{
+					case 0:
+						this->angle_LRFB = Left;
+						break;
+					case 1:
+						this->angle_LRFB = Right;
+						break;
+					case 2:
+						this->angle_LRFB = Back;
+						break;
+					}
+				}
+				else if (this->angle_LRFB == Back)
+				{
+					switch (ran)
+					{
+					case 0:
+						this->angle_LRFB = Left;
+						break;
+					case 1:
+						this->angle_LRFB = Right;
+						break;
+					case 2:
+						this->angle_LRFB = Front;
+						break;
+					}
+				}
 			}
 			break;
 		}
 	}
-	//ƒAƒjƒ[ƒVƒ‡ƒ“§Œä
+	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³åˆ¶å¾¡
 	BChara::DrawInfo  Object::Anim()
 	{
 		ML::Color  defColor(1, 1, 1, 1);
 		BChara::DrawInfo imageTable[] = {
 			//draw							src
-			{ ML::Box2D(-32, -24, 64, 48), ML::Box2D(0, 0, 64, 48), defColor },	//’â~
-			{ ML::Box2D(-32, -32, 64, 64), ML::Box2D(128, 48, 64, 64), defColor },//—‰º
+			{ ML::Box2D(-16, -16, 32, 32), ML::Box2D(0, 0, 64, 64), defColor },	//å‰å‘ãæ­©è¡Œï¼ˆå³è¶³ï¼‰//0
+		{ ML::Box2D(-16, -16, 32, 32), ML::Box2D(64, 0, 64, 64), defColor },	//å‰å‘ãåœæ­¢//1
+		{ ML::Box2D(-16, -16, 32, 32), ML::Box2D(128, 0, 64, 64), defColor },//å‰å‘ãæ­©è¡Œï¼ˆå·¦è¶³)//2
+
+		{ ML::Box2D(-16, -16, 32, 32), ML::Box2D(0, 64, 64, 64), defColor },//å·¦å‘ãæ­©è¡Œï¼ˆå³è¶³ï¼‰//3
+		{ ML::Box2D(-16, -16, 32, 32), ML::Box2D(64, 64, 64, 64), defColor },//å·¦å‘ãåœæ­¢ //4
+		{ ML::Box2D(-16, -16, 32, 32), ML::Box2D(128, 64, 64, 64), defColor },//å·¦å‘ãæ­©è¡Œï¼ˆå·¦è¶³ï¼‰//5
+
+		{ ML::Box2D(-16, -16, 32, 32), ML::Box2D(0, 128, 64, 64), defColor },//å³å‘ãæ­©è¡Œï¼ˆå³è¶³ï¼‰//6
+		{ ML::Box2D(-16, -16, 32, 32), ML::Box2D(64, 128, 64, 64), defColor },//å³å‘ãåœæ­¢ //7
+		{ ML::Box2D(-16, -16, 32, 32), ML::Box2D(128, 128, 64, 64), defColor },//å³å‘ãæ­©è¡Œï¼ˆå·¦è¶³ï¼‰//8
+
+		{ ML::Box2D(-16, -16, 32, 32), ML::Box2D(0, 192, 64, 64), defColor },//å¾Œã‚å‘ãæ­©è¡Œï¼ˆå·¦è¶³ï¼‰//9
+		{ ML::Box2D(-16, -16, 32, 32), ML::Box2D(64, 192, 64, 64), defColor },//å¾Œã‚å‘ãåœæ­¢ //10
+		{ ML::Box2D(-16, -16, 32, 32), ML::Box2D(128, 192, 64, 64), defColor },//å¾Œã‚å‘ãæ­©è¡Œï¼ˆå³è¶³ï¼‰//11
 		};
 		BChara::DrawInfo  rtv;
+		int anim[4] = { 1,0,1,2 };//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‘ã‚¿ãƒ¼ãƒ³
 		switch (this->motion) {
-		default:		rtv = imageTable[0];	break;
-			//	ƒWƒƒƒ“ƒv------------------------------------------------------------------------
-		case  Jump:		rtv = imageTable[0];	break;
-			//	’â~----------------------------------------------------------------------------
-		case  Stand:	rtv = imageTable[0];	break;
-			//	•às----------------------------------------------------------------------------
-		case  Walk:		rtv = imageTable[0];	break;
-			//	—‰º----------------------------------------------------------------------------
-		case  Fall:		rtv = imageTable[1];	break;
-		}
-		//	Œü‚«‚É‰‚¶‚Ä‰æ‘œ‚ğ¶‰E”½“]‚·‚é
-		if (Left == this->angle_LR) {
-			rtv.draw.x = -rtv.draw.x;
-			rtv.draw.w = -rtv.draw.w;
+			//default:		rtv = imageTable[1];	break;
+			//	åœæ­¢----------------------------------------------------------------------------
+		case  Stand:
+			if (this->angle_LRFB == Back) { rtv = imageTable[1]; }
+			if (this->angle_LRFB == Left) { rtv = imageTable[4]; }
+			if (this->angle_LRFB == Right) { rtv = imageTable[7]; }
+			if (this->angle_LRFB == Front) { rtv = imageTable[10]; }
+			break;
+			//	æ­©è¡Œ----------------------------------------------------------------------------
+		case  Walk:
+			if (this->angle_LRFB == Back) {
+				rtv = imageTable[anim[animCnt / 8 % 4]];
+			}
+			if (this->angle_LRFB == Left) {
+				rtv = imageTable[anim[animCnt / 8 % 4] + 3];
+			}
+			if (this->angle_LRFB == Right) {
+				rtv = imageTable[anim[animCnt / 8 % 4] + 6];
+			}
+			if (this->angle_LRFB == Front) {
+				rtv = imageTable[anim[animCnt / 8 % 4] + 9];
+			}
+
+			break;
+			//	æ”»æ’ƒ----------------------------------------------------------------------------
+		case  Attack:
+			break;
+			//	æ–¹å‘è»¢æ›----------------------------------------------------------------------------
+		case  Turn:
+			if (this->angle_LRFB == Back) { rtv = imageTable[1]; }
+			if (this->angle_LRFB == Left) { rtv = imageTable[4]; }
+			if (this->angle_LRFB == Right) { rtv = imageTable[7]; }
+			if (this->angle_LRFB == Front) { rtv = imageTable[8]; }
+			break;
+			//	ãƒ€ãƒ¡ãƒ¼ã‚¸---------------------------------------------------------------------
+			/*	case
+			Bound:	rtv = imageTable[8];	break;*/
 		}
 		return rtv;
 	}
-	//šššššššššššššššššššššššššššššššššššššššššš
-	//ˆÈ‰º‚ÍŠî–{“I‚É•ÏX•s—v‚Èƒƒ\ƒbƒh
-	//šššššššššššššššššššššššššššššššššššššššššš
+	//â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…
+	//ä»¥ä¸‹ã¯åŸºæœ¬çš„ã«å¤‰æ›´ä¸è¦ãªãƒ¡ã‚½ãƒƒãƒ‰
+	//â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…
 	//-------------------------------------------------------------------
-	//ƒ^ƒXƒN¶¬‘‹Œû
+	//ã‚¿ã‚¹ã‚¯ç”Ÿæˆçª“å£
 	Object::SP  Object::Create(bool  flagGameEnginePushBack_)
 	{
 		Object::SP  ob = Object::SP(new  Object());
 		if (ob) {
 			ob->me = ob;
 			if (flagGameEnginePushBack_) {
-				ge->PushBack(ob);//ƒQ[ƒ€ƒGƒ“ƒWƒ“‚É“o˜^
+				ge->PushBack(ob);//ã‚²ãƒ¼ãƒ ã‚¨ãƒ³ã‚¸ãƒ³ã«ç™»éŒ²
 			}
 			if (!ob->B_Initialize()) {
-				ob->Kill();//ƒCƒjƒVƒƒƒ‰ƒCƒY‚É¸”s‚µ‚½‚çKill
+				ob->Kill();//ã‚¤ãƒ‹ã‚·ãƒ£ãƒ©ã‚¤ã‚ºã«å¤±æ•—ã—ãŸã‚‰Kill
 			}
 			return  ob;
 		}
@@ -282,7 +357,7 @@ namespace  Enemy00
 	//-------------------------------------------------------------------
 	Object::Object() {	}
 	//-------------------------------------------------------------------
-	//ƒŠƒ\[ƒXƒNƒ‰ƒX‚Ì¶¬
+	//ãƒªã‚½ãƒ¼ã‚¹ã‚¯ãƒ©ã‚¹ã®ç”Ÿæˆ
 	Resource::SP  Resource::Create()
 	{
 		if (auto sp = instance.lock()) {

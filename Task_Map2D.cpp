@@ -186,6 +186,9 @@ namespace  Map2D
 				else if (63 == this->arr[y][x]) {//草むら
 					return true;
 				}
+				else if (57 == this->arr[y][x]) {//海岸
+					return true;
+				}
 			}
 		}
 		return false;

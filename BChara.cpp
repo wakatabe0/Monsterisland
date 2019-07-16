@@ -72,51 +72,76 @@ void BChara::CheckMove(ML::Vec2&  e_)
 }
 //-----------------------------------------------------------------------------
 //足元接触判定
-bool  BChara::CheckFoot()
-{
-	//あたり判定を基にして足元矩形を生成
-	ML::Box2D  foot(this->hitBase.x,
-		this->hitBase.y + this->hitBase.h,
-		this->hitBase.w,
-		1);
-	foot.Offset(this->pos);
-
-	auto   map = ge->GetTask_One_GN<Map2D::Object>("フィールド", "マップ");
-	if (nullptr == map) { return false; }//マップが無ければ判定しない(出来ない）
-	return map->CheckHit(foot);
-}
+//bool  BChara::CheckFoot()
+//{
+//	//あたり判定を基にして足元矩形を生成
+//	ML::Box2D  foot(this->hitBase.x,
+//		this->hitBase.y + this->hitBase.h,
+//		this->hitBase.w,
+//		1);
+//	foot.Offset(this->pos);
+//
+//	auto   map = ge->GetTask_One_GN<Map2D::Object>("フィールド", "マップ");
+//	if (nullptr == map) { return false; }//マップが無ければ判定しない(出来ない）
+//	return map->CheckHit(foot);
+//}
 //-----------------------------------------------------------------------------
-//足元接触判定
-bool  BChara::CheckFront_LR()
+//接触判定
+bool  BChara::CheckFront_LRFB()
 {
 	//あたり判定を基にして矩形を生成
 	if (this->angle_LRFB == Left) {
-		ML::Box2D  front_LR(
+		ML::Box2D  front_LRFB(
 			this->hitBase.x - 1,
 			this->hitBase.y,
 			1,
 			this->hitBase.h
 		);
-		front_LR.Offset(this->pos);
+		front_LRFB.Offset(this->pos);
 
 		auto   map = ge->GetTask_One_GN<Map2D::Object>("フィールド", "マップ");
 		if (nullptr == map) { return false; }//マップが無ければ判定しない(出来ない）
-		return map->CheckHit(front_LR);
+		return map->CheckHit(front_LRFB);
 	}
-	else {
-		ML::Box2D front_LR(
+	else if (this->angle_LRFB == Right) {
+		ML::Box2D front_LRFB(
 			this->hitBase.x + this->hitBase.w,
 			this->hitBase.y,
 			1,
 			this->hitBase.h
 			);
-		front_LR.Offset(this->pos);
+		front_LRFB.Offset(this->pos);
 
 		auto   map = ge->GetTask_One_GN<Map2D::Object>("フィールド", "マップ");
 		if (nullptr == map) { return false; }//マップが無ければ判定しない(出来ない）
-		return map->CheckHit(front_LR);
+		return map->CheckHit(front_LRFB);
 	}
+	else if (this->angle_LRFB == Front) {
+		ML::Box2D front_LRFB(
+			this->hitBase.x,
+			this->hitBase.y - 1,
+			this->hitBase.w,
+			1
+		);
+		front_LRFB.Offset(this->pos);
 
+		auto   map = ge->GetTask_One_GN<Map2D::Object>("フィールド", "マップ");
+		if (nullptr == map) { return false; }//マップが無ければ判定しない(出来ない）
+		return map->CheckHit(front_LRFB);
+	}
+	else {
+		ML::Box2D front_LRFB(
+			this->hitBase.x,
+			this->hitBase.y + this->hitBase.h,
+			this->hitBase.w,
+			1
+		);
+		front_LRFB.Offset(this->pos);
+
+		auto   map = ge->GetTask_One_GN<Map2D::Object>("フィールド", "マップ");
+		if (nullptr == map) { return false; }//マップが無ければ判定しない(出来ない）
+		return map->CheckHit(front_LRFB);
+	}
 }
 //-----------------------------------------------------------------------------
 //接触時の応答処理（これ自体はダミーのようなもの）
