@@ -29,7 +29,7 @@ public:
 		Stand,		//	停止
 		Walk,		//	歩行
 		Attack,		//	攻撃
-		//Turn,		//正面接触
+		Turn,		//正面接触
 		//Bound,		//ダメージを受けて吹き飛んでいる
 		//Lose,		//消える・昇天
 	};
@@ -62,11 +62,11 @@ public:
 	//めり込まない移動処理
 	virtual  void  CheckMove(ML::Vec2&  est_);
 	//足元接触判定
-	virtual  bool  CheckFoot();
+	//virtual  bool  CheckFoot();
 	//頭上接触判定
 	virtual  bool  CheckHead();
 	//正面接触判定（再度ビューゲーム専用）
-	virtual bool CheckFront_LR();
+	virtual bool CheckFront_LRFB();
 	//モーションを更新（変更なしの場合	false)
 	bool  UpdateMotion(Motion  nm_);
 

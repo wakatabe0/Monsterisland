@@ -53,14 +53,20 @@
     <Filter Include="MyPG\Tasks\Map">
       <UniqueIdentifier>{b8a6244d-4590-4cf9-88e2-c324e04c3814}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MyPG\Tasks\Ending">
-      <UniqueIdentifier>{86e5f466-0e58-4888-b822-ff4676a98c2e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MyPG\Tasks\Player">
       <UniqueIdentifier>{ccf0856c-31e8-4c24-9d87-1c9fc7b34b03}</UniqueIdentifier>
     </Filter>
     <Filter Include="MyPG\Tasks\Shot">
       <UniqueIdentifier>{56569e04-db78-4a31-85ac-a1f22afc7a54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyPG\Tasks\Enemy">
+      <UniqueIdentifier>{b4aceef5-7579-4ce2-a606-92ed9c1ebfc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyPG\Tasks\Gameclear">
+      <UniqueIdentifier>{bcbf78d2-da1d-40fe-a552-78353b6f7dd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyPG\Tasks\Gameover">
+      <UniqueIdentifier>{dc41a026-5695-4c52-8ae9-8d603895b5fb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -127,9 +133,6 @@
     <ClCompile Include="Task_Game.cpp">
       <Filter>MyPG\Tasks\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Task_Ending.cpp">
-      <Filter>MyPG\Tasks\Ending</Filter>
-    </ClCompile>
     <ClCompile Include="GameEngine_Ver3_81.cpp">
       <Filter>GE</Filter>
     </ClCompile>
@@ -141,6 +144,12 @@
     </ClCompile>
     <ClCompile Include="Task_Shot01.cpp">
       <Filter>MyPG\Tasks\Shot</Filter>
+    </ClCompile>
+    <ClCompile Include="Task_Enemy00.cpp">
+      <Filter>MyPG\Tasks\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Task_Gameover.cpp">
+      <Filter>MyPG\Tasks\Gameover</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -207,9 +216,6 @@
     <ClInclude Include="Task_Game.h">
       <Filter>MyPG\Tasks\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Task_Ending.h">
-      <Filter>MyPG\Tasks\Ending</Filter>
-    </ClInclude>
     <ClInclude Include="GameEngine_Ver3_81.h">
       <Filter>GE</Filter>
     </ClInclude>
@@ -221,6 +227,12 @@
     </ClInclude>
     <ClInclude Include="Task_Shot01.h">
       <Filter>MyPG\Tasks\Shot</Filter>
+    </ClInclude>
+    <ClInclude Include="Task_Enemy00.h">
+      <Filter>MyPG\Tasks\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Task_Gameover.h">
+      <Filter>MyPG\Tasks\Gameover</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

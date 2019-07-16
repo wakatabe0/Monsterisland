@@ -1,15 +1,15 @@
-#pragma warning(disable:4996)
+ï»¿#pragma warning(disable:4996)
 #pragma once
 //-------------------------------------------------------------------
-//“G00iƒXƒ‰ƒCƒ€
+//æ•µ00ï¼ˆã‚¹ãƒ©ã‚¤ãƒ 
 //-------------------------------------------------------------------
 #include "BChara.h"
 
 namespace  Enemy00
 {
-	//ƒ^ƒXƒN‚ÉŠ„‚è“–‚Ä‚éƒOƒ‹[ƒv–¼‚ÆŒÅ—L–¼
-	const  string  defGroupName("“G");	//ƒOƒ‹[ƒv–¼
-	const  string  defName("NoName");		//ƒ^ƒXƒN–¼
+	//ã‚¿ã‚¹ã‚¯ã«å‰²ã‚Šå½“ã¦ã‚‹ã‚°ãƒ«ãƒ¼ãƒ—åã¨å›ºæœ‰å
+	const  string  defGroupName("æ•µ");	//ã‚°ãƒ«ãƒ¼ãƒ—å
+	const  string  defName("NoName");		//ã‚¿ã‚¹ã‚¯å
 	//-------------------------------------------------------------------
 	class  Resource
 	{
@@ -22,8 +22,8 @@ namespace  Enemy00
 		typedef  weak_ptr<Resource>		WP;
 		static   WP  instance;
 		static  Resource::SP  Create();
-		//•ÏX‰Â
-			//‹¤—L‚·‚é•Ï”‚Í‚±‚±‚É’Ç‰Á‚·‚é
+		//å¤‰æ›´å¯â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡
+			//å…±æœ‰ã™ã‚‹å¤‰æ•°ã¯ã“ã“ã«è¿½åŠ ã™ã‚‹
 		DG::Image::SP img;
 	};
 	//-------------------------------------------------------------------
@@ -33,7 +33,7 @@ namespace  Enemy00
 		virtual  ~Object();
 		typedef  shared_ptr<Object>		SP;
 		typedef  weak_ptr<Object>		WP;
-		//¶¬‘‹Œû ˆø”‚Ítrue‚Åƒ^ƒXƒNƒVƒXƒeƒ€‚Ö©“®“o˜^
+		//ç”Ÿæˆçª“å£ å¼•æ•°ã¯trueã§ã‚¿ã‚¹ã‚¯ã‚·ã‚¹ãƒ†ãƒ ã¸è‡ªå‹•ç™»éŒ²
 		static  Object::SP  Create(bool flagGameEnginePushBack_);
 		Resource::SP	res;
 	private:
@@ -41,18 +41,18 @@ namespace  Enemy00
 		Object();
 		bool  B_Initialize();
 		bool  B_Finalize();
-		bool  Initialize();	//u‰Šú‰»vƒ^ƒXƒN¶¬‚É‚P‰ñ‚¾‚¯s‚¤ˆ—
-		void  UpDate();		//uÀsv‚PƒtƒŒ[ƒ€–ˆ‚És‚¤ˆ—
-		void  Render2D_AF();	//u2D•`‰æv‚PƒtƒŒ[ƒ€–ˆ‚És‚¤ˆ—
-		bool  Finalize();		//uI—¹vƒ^ƒXƒNÁ–Å‚É‚P‰ñ‚¾‚¯s‚¤ˆ—
+		bool  Initialize();	//ã€ŒåˆæœŸåŒ–ã€ã‚¿ã‚¹ã‚¯ç”Ÿæˆæ™‚ã«ï¼‘å›ã ã‘è¡Œã†å‡¦ç†
+		void  UpDate();		//ã€Œå®Ÿè¡Œã€ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ æ¯ã«è¡Œã†å‡¦ç†
+		void  Render2D_AF();	//ã€Œ2Dæç”»ã€ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ æ¯ã«è¡Œã†å‡¦ç†
+		bool  Finalize();		//ã€Œçµ‚äº†ã€ã‚¿ã‚¹ã‚¯æ¶ˆæ»…æ™‚ã«ï¼‘å›ã ã‘è¡Œã†å‡¦ç†
 	public:
-		//•ÏX‰Â
-			//’Ç‰Á‚µ‚½‚¢•Ï”Eƒƒ\ƒbƒh‚Í‚±‚±‚É’Ç‰Á‚·‚é
-			//BChara‚ÉŠÜ‚Ü‚ê‚È‚¢ƒ‚ƒm‚Ì‚İ‚±‚±‚É’Ç‰Á‚·‚é
-		void Think();//vl•ó‹µ”»’fiƒXƒe[ƒ^ƒXŒˆ’èj
-		void Move();//ƒ‚[ƒVƒ‡ƒ“‚É‘Î‰‚µ‚½ˆ—
-		BChara::DrawInfo Anim();//ƒAƒjƒ[ƒVƒ‡ƒ“§Œä
-		//ÚG‚Ì‰“šˆ—i•K‚¸ó‚¯g‚Ìˆ—‚Æ‚µ‚ÄÀ‘•‚·‚éj
+		//å¤‰æ›´å¯â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡â—‡
+			//è¿½åŠ ã—ãŸã„å¤‰æ•°ãƒ»ãƒ¡ã‚½ãƒƒãƒ‰ã¯ã“ã“ã«è¿½åŠ ã™ã‚‹
+			//BCharaã«å«ã¾ã‚Œãªã„ãƒ¢ãƒã®ã¿ã“ã“ã«è¿½åŠ ã™ã‚‹
+		void Think();//æ€è€ƒï¼†çŠ¶æ³åˆ¤æ–­ï¼ˆã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ±ºå®šï¼‰
+		void Move();//ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã«å¯¾å¿œã—ãŸå‡¦ç†
+		BChara::DrawInfo Anim();//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³åˆ¶å¾¡
+		//æ¥è§¦æ™‚ã®å¿œç­”å‡¦ç†ï¼ˆå¿…ãšå—ã‘èº«ã®å‡¦ç†ã¨ã—ã¦å®Ÿè£…ã™ã‚‹ï¼‰
 		void Received(BChara* from_, AttackInfo at_);
 	};
 }
