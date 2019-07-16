@@ -9,6 +9,7 @@
 #include  "Task_Player.h"
 //#include  "Task_Sprite.h"
 #include "Task_Enemy00.h"
+#include "Task_Goal.h"
 //#include "Task_Item.h"
 //#include "Task_Item01.h"
 //#include "Task_Item02.h"
@@ -60,6 +61,11 @@ namespace  Game
 			ene->pos.x = 100.0f + c * 80;
 			ene->pos.y = 100;
 		}
+		//ゴールの生成
+		auto  go = Goal::Object::Create(true);
+		go->pos.x = 32 * 23;
+		go->pos.y = 50;
+
 		//アイテム仮配置
 		//Item00
 		/*for (int c = 0; c < 3; ++c) {
@@ -89,6 +95,7 @@ namespace  Game
 		ge->KillAll_G("フィールド");
 		ge->KillAll_G("プレイヤ");
 		ge->KillAll_G("敵");
+		ge->KillAll_G("ゴール");
 
 		if (!ge->QuitFlag() && this->nextTaskCreate) {
 			//★引き継ぎタスクの生成

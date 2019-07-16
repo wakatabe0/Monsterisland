@@ -68,6 +68,9 @@
     <Filter Include="MyPG\Tasks\Gameover">
       <UniqueIdentifier>{dc41a026-5695-4c52-8ae9-8d603895b5fb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MyPG\Tasks\Goal">
+      <UniqueIdentifier>{3ec5de70-35e1-4b3a-9da3-90764e1b392e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="myLib.cpp">
@@ -151,6 +154,12 @@
     <ClCompile Include="Task_Gameover.cpp">
       <Filter>MyPG\Tasks\Gameover</Filter>
     </ClCompile>
+    <ClCompile Include="Task_Gameclear.cpp">
+      <Filter>MyPG\Tasks\Gameclear</Filter>
+    </ClCompile>
+    <ClCompile Include="Task_Goal.cpp">
+      <Filter>MyPG\Tasks\Goal</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="myLib.h">
@@ -233,6 +242,12 @@
     </ClInclude>
     <ClInclude Include="Task_Gameover.h">
       <Filter>MyPG\Tasks\Gameover</Filter>
+    </ClInclude>
+    <ClInclude Include="Task_Gameclear.h">
+      <Filter>MyPG\Tasks\Gameclear</Filter>
+    </ClInclude>
+    <ClInclude Include="Task_Goal.h">
+      <Filter>MyPG\Tasks\Goal</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

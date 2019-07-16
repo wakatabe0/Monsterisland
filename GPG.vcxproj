@@ -101,7 +101,9 @@
     <ClCompile Include="MyPG.cpp" />
     <ClCompile Include="Task_Enemy00.cpp" />
     <ClCompile Include="Task_Game.cpp" />
+    <ClCompile Include="Task_Gameclear.cpp" />
     <ClCompile Include="Task_Gameover.cpp" />
+    <ClCompile Include="Task_Goal.cpp" />
     <ClCompile Include="Task_Map2D.cpp" />
     <ClCompile Include="Task_Player.cpp" />
     <ClCompile Include="Task_Shot01.cpp" />
@@ -131,7 +133,9 @@
     <ClInclude Include="MyPG.h" />
     <ClInclude Include="Task_Enemy00.h" />
     <ClInclude Include="Task_Game.h" />
+    <ClInclude Include="Task_Gameclear.h" />
     <ClInclude Include="Task_Gameover.h" />
+    <ClInclude Include="Task_Goal.h" />
     <ClInclude Include="Task_Map2D.h" />
     <ClInclude Include="Task_Player.h" />
     <ClInclude Include="Task_Shot01.h" />
