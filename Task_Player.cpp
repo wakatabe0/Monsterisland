@@ -6,6 +6,7 @@
 #include  "Task_Map2D.h"
 #include "Task_Shot01.h"
 #include "Task_Gameover.h"
+#include "Task_Goal.h"
 
 namespace  Player
 {
@@ -74,6 +75,22 @@ namespace  Player
 		ML::Vec2  est = this->moveVec;
 		this->CheckMove(est);
 
+		//ゴールとの当たり判定
+		{
+			ML::Box2D me = this->hitBase.OffsetCopy(this->pos);
+			auto targets = ge->GetTask_Group_G<BChara>("ゴール");
+			for (auto it = targets->begin();
+				it != targets->end();
+				++it) {
+				//相手に接触の有無を確認させる
+				if ((*it)->CheckHit(me)) {
+					//相手にダメージの処理を行わせる
+					BChara::AttackInfo at = { 0,0,0 };
+					(*it)->Received(this, at);
+					break;
+				}
+			}
+		}
 		//アイテムの当たり判定
 		//{
 		//	ML::Box2D me = this->hitBase.OffsetCopy(this->pos);
@@ -244,7 +261,9 @@ namespace  Player
 
 			//★データ＆タスク解放
 			ge->KillAll_G("フィールド");
+			ge->KillAll_G("プレイヤ");
 			ge->KillAll_G("敵");
+			ge->KillAll_G("ゴール");
 
 
 			if (!ge->QuitFlag() && this->nextTaskCreate) {

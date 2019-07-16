@@ -31,7 +31,7 @@ public:
 		Attack,		//	攻撃
 		Turn,		//正面接触
 		//Bound,		//ダメージを受けて吹き飛んでいる
-		//Lose,		//消える・昇天
+		Lose,		//消える・昇天
 	};
 	Motion			motion;			//	現在の行動を示すフラグ
 	int				animCnt;		//アニメーションカウンタ
