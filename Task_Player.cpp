@@ -5,6 +5,7 @@
 #include  "Task_Player.h"
 #include  "Task_Map2D.h"
 #include "Task_Shot01.h"
+#include "Task_Gameover.h"
 
 namespace  Player
 {
@@ -73,7 +74,7 @@ namespace  Player
 		ML::Vec2  est = this->moveVec;
 		this->CheckMove(est);
 
-		//当たり判定
+		//アイテムの当たり判定
 		//{
 		//	ML::Box2D me = this->hitBase.OffsetCopy(this->pos);
 		//	auto targets = ge->GetTask_Group_G<BChara>("アイテム");
@@ -109,11 +110,11 @@ namespace  Player
 	//「２Ｄ描画」１フレーム毎に行う処理
 	void  Object::Render2D_AF()
 	{
-		//if (this->unHitTime > 0) {
-		//	if ((this->unHitTime / 4) % 2 == 0) {
-		//		return;//8フレーム中4フレーム画像を表示しない
-		//	}
-		//}
+		if (this->unHitTime > 0) {
+			if ((this->unHitTime / 4) % 2 == 0) {
+				return;//8フレーム中4フレーム画像を表示しない
+			}
+		}
 
 		BChara::DrawInfo  di = this->Anim();
 		di.draw.Offset(this->pos);
@@ -233,21 +234,33 @@ namespace  Player
 	//接触時の応答処理（必ず受け身の処理として実装する）
 	void Object::Received(BChara* from_, AttackInfo at_)
 	{
-		//if (this->unHitTime > 0) {
-		//	return;//無敵時間中はダメージを受けない
-		//}
-		//this->unHitTime = 90;
-		//this->hp -= at_.power;	//仮処理
-		//if (this->hp <= 0) {
-		//	this->Kill();
-		//}
-		//吹き飛ばされる
-		/*if (this->pos.x > from_->pos.x) {
-			this->moveVec = ML::Vec2(+4, -9);
+		if (this->unHitTime > 0) {
+			return;//無敵時間中はダメージを受けない
 		}
-		else {
-			this->moveVec = ML::Vec2(-4, -9);
-		}*/
+		this->unHitTime = 90;
+		this->hp -= at_.power;	//仮処理
+		if (this->hp <= 0) {
+			this->Kill();
+
+			//★データ＆タスク解放
+			ge->KillAll_G("フィールド");
+			ge->KillAll_G("敵");
+
+
+			if (!ge->QuitFlag() && this->nextTaskCreate) {
+				//★引き継ぎタスクの生成
+				//エンディングへ
+				auto nextTask = Gameover::Object::Create(true);
+			}
+
+		}
+		////吹き飛ばされる
+		//if (this->pos.x > from_->pos.x) {
+		//	this->moveVec = ML::Vec2(+4, -9);
+		//}
+		//else {
+		//	this->moveVec = ML::Vec2(-4, -9);
+		//}
 		//this->UpdateMotion(Bound);
 		//from_は攻撃してきた相手、カウンターなどで逆にダメージを与えたいときに使う
 	}

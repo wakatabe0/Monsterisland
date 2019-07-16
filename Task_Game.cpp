@@ -3,11 +3,12 @@
 //-------------------------------------------------------------------
 #include  "MyPG.h"
 #include  "Task_Game.h"
-#include  "Task_Ending.h"
+#include  "Task_Title.h"
+//#include "Task_Ending.h"
 #include  "Task_Map2D.h"
 #include  "Task_Player.h"
 //#include  "Task_Sprite.h"
-//#include "Task_Enemy00.h"
+#include "Task_Enemy00.h"
 //#include "Task_Item.h"
 //#include "Task_Item01.h"
 //#include "Task_Item02.h"
@@ -46,7 +47,7 @@ namespace  Game
 		//プレイヤの生成
 		auto  pl = Player::Object::Create(true);
 		pl->pos.x = 32 * 5;
-		pl->pos.y = 32 * 15;
+		pl->pos.y = 32 * 18;
 
 		//妖精の生成
 		/*auto  spr = Sprite::Object::Create(true);
@@ -54,11 +55,11 @@ namespace  Game
 		spr->target = pl;
 */
 		//敵の生成
-	/*	for (int c = 0; c < 6; ++c) {
+		for (int c = 0; c < 10; ++c) {
 			auto ene = Enemy00::Object::Create(true);
-			ene->pos.x = 500.0f + c * 100;
-			ene->pos.y = 80;
-		}*/
+			ene->pos.x = 100.0f + c * 80;
+			ene->pos.y = 100;
+		}
 		//アイテム仮配置
 		//Item00
 		/*for (int c = 0; c < 3; ++c) {
@@ -87,9 +88,12 @@ namespace  Game
 		//★データ＆タスク解放
 		ge->KillAll_G("フィールド");
 		ge->KillAll_G("プレイヤ");
+		ge->KillAll_G("敵");
 
 		if (!ge->QuitFlag() && this->nextTaskCreate) {
 			//★引き継ぎタスクの生成
+			//エンディングへ
+			auto nextTask = Title::Object::Create(true);
 		}
 
 		return  true;

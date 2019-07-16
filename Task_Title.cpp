@@ -12,7 +12,7 @@ namespace  Title
 	//リソースの初期化
 	bool  Resource::Initialize()
 	{
-		this->img = DG::Image::Create("./data/image/Title.bmp");
+		this->img = DG::Image::Create("./data/image/Title.png");
 		return true;
 	}
 	//-------------------------------------------------------------------
@@ -47,6 +47,7 @@ namespace  Title
 
 		if (!ge->QuitFlag() && this->nextTaskCreate) {
 			//★引き継ぎタスクの生成
+			//メインゲームへ
 			auto nextTask = Game::Object::Create(true);
 		}
 		return  true;
@@ -74,7 +75,7 @@ namespace  Title
 	void  Object::Render2D_AF()
 	{
 		ML::Box2D  draw(0, 0, 480, 270);
-		ML::Box2D  src(0, 0, 240, 135);
+		ML::Box2D  src(0, 0, 480, 360);
 
 		draw.Offset(0, this->logoPosY);
 		this->res->img->Draw(draw, src);

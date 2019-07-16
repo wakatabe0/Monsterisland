@@ -102,7 +102,7 @@ namespace  Shot01
 				//相手に接触の有無を確認させる
 				if ((*it)->CheckHit(me)) {
 					//相手にダメージの処理を行わせる
-					BChara::AttackInfo at = { 5,0,0 };
+					BChara::AttackInfo at = { 1,0,0 };
 					(*it)->Received(this, at);
 					//消滅申請
 					this->Kill();

@@ -99,8 +99,9 @@
     <ClCompile Include="GameEngine_Ver3_81.cpp" />
     <ClCompile Include="myLib.cpp" />
     <ClCompile Include="MyPG.cpp" />
-    <ClCompile Include="Task_Ending.cpp" />
+    <ClCompile Include="Task_Enemy00.cpp" />
     <ClCompile Include="Task_Game.cpp" />
+    <ClCompile Include="Task_Gameover.cpp" />
     <ClCompile Include="Task_Map2D.cpp" />
     <ClCompile Include="Task_Player.cpp" />
     <ClCompile Include="Task_Shot01.cpp" />
@@ -128,8 +129,9 @@
     <ClInclude Include="library.h" />
     <ClInclude Include="myLib.h" />
     <ClInclude Include="MyPG.h" />
-    <ClInclude Include="Task_Ending.h" />
+    <ClInclude Include="Task_Enemy00.h" />
     <ClInclude Include="Task_Game.h" />
+    <ClInclude Include="Task_Gameover.h" />
     <ClInclude Include="Task_Map2D.h" />
     <ClInclude Include="Task_Player.h" />
     <ClInclude Include="Task_Shot01.h" />
