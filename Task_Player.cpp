@@ -6,7 +6,7 @@
 #include  "Task_Map2D.h"
 #include "Task_Shot01.h"
 #include "Task_Gameover.h"
-#include "Task_Goal.h"
+#include "Task_Arrow.h"
 
 namespace  Player
 {
@@ -78,7 +78,7 @@ namespace  Player
 		//ゴールとの当たり判定
 		{
 			ML::Box2D me = this->hitBase.OffsetCopy(this->pos);
-			auto targets = ge->GetTask_Group_G<BChara>("ゴール");
+			auto targets = ge->GetTask_Group_G<BChara>("矢印");
 			for (auto it = targets->begin();
 				it != targets->end();
 				++it) {
@@ -263,7 +263,7 @@ namespace  Player
 			ge->KillAll_G("フィールド");
 			ge->KillAll_G("プレイヤ");
 			ge->KillAll_G("敵");
-			ge->KillAll_G("ゴール");
+			ge->KillAll_G("矢印");
 
 
 			if (!ge->QuitFlag() && this->nextTaskCreate) {

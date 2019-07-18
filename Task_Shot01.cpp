@@ -6,6 +6,8 @@
 #include "Task_Map2D.h"
 //#include "Task_Effect00.h"
 #include "Task_Enemy00.h"
+#include "Task_EffectCreate.h"
+#include "Task_EffectBomb.h"
 
 namespace  Shot01
 {
@@ -67,6 +69,8 @@ namespace  Shot01
 		if (this->moveCnt >= 100) {
 			//消滅申請
 			this->Kill();
+			//小爆発
+			ge->effectCreator->CreateEffect(ge->effectCreator->LITTLEBOMB, this->pos);
 			return;
 		}
 		//移動
@@ -81,7 +85,10 @@ namespace  Shot01
 			if (true == map->CheckHit(hit)) {
 				//消滅申請
 				this->Kill();
-
+				//小爆発
+				ge->effectCreator->CreateEffect(ge->effectCreator->LITTLEBOMB, this->pos);
+				/*auto eff = EffectBomb::Object::Create(true);
+				eff->pos = this->pos;*/
 				//とりあえず星はばら撒くよ
 				/*for (int c = 0; c < 4; ++c) {
 					auto eff = Effect00::Object::Create(true);
@@ -106,6 +113,10 @@ namespace  Shot01
 					(*it)->Received(this, at);
 					//消滅申請
 					this->Kill();
+					//小爆発
+					//ML::Vec2 b = (*it)->pos;
+
+					ge->effectCreator->CreateEffect(ge->effectCreator->LITTLEBOMB,this->pos);
 					break;
 				}
 			}
