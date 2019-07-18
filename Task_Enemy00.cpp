@@ -93,6 +93,8 @@ namespace  Enemy00
 		this->hp -= at_.power;	//仮処理
 		if (this->hp <= 0) {
 			this->Kill();
+			//爆発
+			ge->effectCreator->CreateEffect(ge->effectCreator->BOMB, this->pos);
 		}
 
 		//from_は攻撃してきた相手、カウンターなどで逆にダメージを与えたいときに使う

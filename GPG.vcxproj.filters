@@ -47,9 +47,6 @@
     <Filter Include="MyPG\Tasks\Title">
       <UniqueIdentifier>{9b91ad59-5fab-4b3d-8169-b7c99ba28f98}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MyPG\Tasks\Game">
-      <UniqueIdentifier>{4832fbd4-d381-4787-a64e-e5037d62fce7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MyPG\Tasks\Map">
       <UniqueIdentifier>{b8a6244d-4590-4cf9-88e2-c324e04c3814}</UniqueIdentifier>
     </Filter>
@@ -70,6 +67,9 @@
     </Filter>
     <Filter Include="MyPG\Tasks\Goal">
       <UniqueIdentifier>{3ec5de70-35e1-4b3a-9da3-90764e1b392e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyPG\Tasks\Effect">
+      <UniqueIdentifier>{4b809b0d-51ea-4a6b-bcaf-869426ffa83a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -133,9 +133,6 @@
     <ClCompile Include="Task_Title.cpp">
       <Filter>MyPG\Tasks\Title</Filter>
     </ClCompile>
-    <ClCompile Include="Task_Game.cpp">
-      <Filter>MyPG\Tasks\Game</Filter>
-    </ClCompile>
     <ClCompile Include="GameEngine_Ver3_81.cpp">
       <Filter>GE</Filter>
     </ClCompile>
@@ -157,7 +154,16 @@
     <ClCompile Include="Task_Gameclear.cpp">
       <Filter>MyPG\Tasks\Gameclear</Filter>
     </ClCompile>
-    <ClCompile Include="Task_Goal.cpp">
+    <ClCompile Include="Task_Game.cpp">
+      <Filter>MyPG\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="Task_EffectCreate.cpp">
+      <Filter>MyPG\Tasks\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Task_EffectBomb.cpp">
+      <Filter>MyPG\Tasks\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Task_Arrow.cpp">
       <Filter>MyPG\Tasks\Goal</Filter>
     </ClCompile>
   </ItemGroup>
@@ -222,9 +228,6 @@
     <ClInclude Include="Task_Title.h">
       <Filter>MyPG\Tasks\Title</Filter>
     </ClInclude>
-    <ClInclude Include="Task_Game.h">
-      <Filter>MyPG\Tasks\Game</Filter>
-    </ClInclude>
     <ClInclude Include="GameEngine_Ver3_81.h">
       <Filter>GE</Filter>
     </ClInclude>
@@ -246,7 +249,16 @@
     <ClInclude Include="Task_Gameclear.h">
       <Filter>MyPG\Tasks\Gameclear</Filter>
     </ClInclude>
-    <ClInclude Include="Task_Goal.h">
+    <ClInclude Include="Task_Game.h">
+      <Filter>MyPG\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="Task_EffectCreate.h">
+      <Filter>MyPG\Tasks\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Task_EffectBomb.h">
+      <Filter>MyPG\Tasks\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Task_Arrow.h">
       <Filter>MyPG\Tasks\Goal</Filter>
     </ClInclude>
   </ItemGroup>
