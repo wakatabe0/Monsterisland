@@ -65,11 +65,14 @@
     <Filter Include="MyPG\Tasks\Gameover">
       <UniqueIdentifier>{dc41a026-5695-4c52-8ae9-8d603895b5fb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MyPG\Tasks\Goal">
-      <UniqueIdentifier>{3ec5de70-35e1-4b3a-9da3-90764e1b392e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="MyPG\Tasks\Effect">
       <UniqueIdentifier>{4b809b0d-51ea-4a6b-bcaf-869426ffa83a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyPG\Tasks\HP">
+      <UniqueIdentifier>{b0d822f8-6745-4b99-9aeb-446bdcc55b44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyPG\Tasks\Arrow">
+      <UniqueIdentifier>{3ec5de70-35e1-4b3a-9da3-90764e1b392e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -164,7 +167,10 @@
       <Filter>MyPG\Tasks\Effect</Filter>
     </ClCompile>
     <ClCompile Include="Task_Arrow.cpp">
-      <Filter>MyPG\Tasks\Goal</Filter>
+      <Filter>MyPG\Tasks\Arrow</Filter>
+    </ClCompile>
+    <ClCompile Include="Task_HP.cpp">
+      <Filter>MyPG\Tasks\HP</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -259,7 +265,10 @@
       <Filter>MyPG\Tasks\Effect</Filter>
     </ClInclude>
     <ClInclude Include="Task_Arrow.h">
-      <Filter>MyPG\Tasks\Goal</Filter>
+      <Filter>MyPG\Tasks\Arrow</Filter>
+    </ClInclude>
+    <ClInclude Include="Task_HP.h">
+      <Filter>MyPG\Tasks\HP</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

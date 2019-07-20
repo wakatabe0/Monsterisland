@@ -23,20 +23,20 @@ bool  BChara::UpdateMotion(Motion  nm_)
 
 //-----------------------------------------------------------------------------
 //頭上接触判定
-bool  BChara::CheckHead()
-{
-	//あたり判定を基にして頭上矩形を生成
-	ML::Box2D  head(this->hitBase.x,
-		this->hitBase.y - 1,
-		this->hitBase.w,
-		1);
-	head.Offset((int)this->pos.x, (int)this->pos.y);
+//bool  BChara::CheckHead()
+//{
+	////あたり判定を基にして頭上矩形を生成
+	//ML::Box2D  head(this->hitBase.x,
+	//	this->hitBase.y - 1,
+	//	this->hitBase.w,
+	//	1);
+	//head.Offset((int)this->pos.x, (int)this->pos.y);
 
 
-	auto   map = ge->GetTask_One_GN<Map2D::Object>("フィールド", "マップ");
-	if (nullptr == map) { return false; }//マップが無ければ判定しない(出来ない）
-	return map->CheckHit(head);
-}
+	//auto   map = ge->GetTask_One_GN<Map2D::Object>("フィールド", "マップ");
+	//if (nullptr == map) { return false; }//マップが無ければ判定しない(出来ない）
+	//return map->CheckHit(head);
+//}
 //-----------------------------------------------------------------------------
 //めり込まない移動処理
 void BChara::CheckMove(ML::Vec2&  e_)

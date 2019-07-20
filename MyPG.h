@@ -83,6 +83,9 @@ namespace  MyPG
 		DI::GamePad::SP  in1, in2, in3, in4;	//取り合えず４本
 		EffectCreate::Object::SP effectCreator;//エフェクト生成時に使用
 		//----------------------------------------------
+		bool GameoverFlag;//ゲームオーバーのフラグ
+		bool GameclearFlag;//ゲームクリアのフラグ
+		int Insert_hp;//プレイヤのHPをHPの描画に使用する
 	};
 }
 extern MyPG::MyGameEngine* ge;

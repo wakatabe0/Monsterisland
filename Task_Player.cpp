@@ -5,7 +5,6 @@
 #include  "Task_Player.h"
 #include  "Task_Map2D.h"
 #include "Task_Shot01.h"
-#include "Task_Gameover.h"
 #include "Task_Arrow.h"
 
 namespace  Player
@@ -122,6 +121,7 @@ namespace  Player
 				map->adjustCameraPos();
 			}
 		}
+		ge->Insert_hp = this->hp;
 	}
 	//-------------------------------------------------------------------
 	//「２Ｄ描画」１フレーム毎に行う処理
@@ -257,21 +257,8 @@ namespace  Player
 		this->unHitTime = 90;
 		this->hp -= at_.power;	//仮処理
 		if (this->hp <= 0) {
+			ge->GameoverFlag = true;
 			this->Kill();
-
-			//★データ＆タスク解放
-			ge->KillAll_G("フィールド");
-			ge->KillAll_G("プレイヤ");
-			ge->KillAll_G("敵");
-			ge->KillAll_G("矢印");
-
-
-			if (!ge->QuitFlag() && this->nextTaskCreate) {
-				//★引き継ぎタスクの生成
-				//エンディングへ
-				auto nextTask = Gameover::Object::Create(true);
-			}
-
 		}
 		////吹き飛ばされる
 		//if (this->pos.x > from_->pos.x) {

@@ -1,14 +1,14 @@
 ﻿#pragma warning(disable:4996)
 #pragma once
 //-------------------------------------------------------------------
-//矢印
+//HP
 //-------------------------------------------------------------------
 #include "BChara.h"
 
-namespace  Arrow
+namespace	HP
 {
 	//タスクに割り当てるグループ名と固有名
-	const  string  defGroupName("矢印");	//グループ名
+	const  string  defGroupName("HP");	//グループ名
 	const  string  defName("NoName");		//タスク名
 											//-------------------------------------------------------------------
 	class  Resource
@@ -24,7 +24,8 @@ namespace  Arrow
 		static  Resource::SP  Create();
 		//変更可◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
 		//共有する変数はここに追加する
-		DG::Image::SP img;
+		DG::Image::SP img1;
+		DG::Image::SP img2;
 	};
 	//-------------------------------------------------------------------
 	class  Object : public  BChara
@@ -49,9 +50,11 @@ namespace  Arrow
 		//変更可◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
 		//追加したい変数・メソッドはここに追加する
 		//BCharaに含まれないモノのみここに追加する
-
-		BChara::DrawInfo Anim();
+		/*「変数宣言を書く」
+		「追加メソッドを書く」*/
+		//BChara::DrawInfo Anim();
 		//接触時の応答処理（必ず受け身の処理として実装する）
-		void Received(BChara* from_, AttackInfo at_);
+		//void Received(BChara* from_, AttackInfo at_);
 	};
 }
+

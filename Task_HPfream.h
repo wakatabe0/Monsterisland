@@ -1,16 +1,16 @@
 #pragma warning(disable:4996)
 #pragma once
 //-------------------------------------------------------------------
-//かわいい妖精
+//空白のHP
 //-------------------------------------------------------------------
 #include "BChara.h"
 
-namespace  Sprite
+namespace	HPfream
 {
 	//タスクに割り当てるグループ名と固有名
-	const  string  defGroupName("オプション");	//グループ名
-	const  string  defName("妖精？");		//タスク名
-	//-------------------------------------------------------------------
+	const  string  defGroupName("HP（空白）");	//グループ名
+	const  string  defName("NoName");		//タスク名
+											//-------------------------------------------------------------------
 	class  Resource
 	{
 		bool  Initialize();
@@ -22,9 +22,9 @@ namespace  Sprite
 		typedef  weak_ptr<Resource>		WP;
 		static   WP  instance;
 		static  Resource::SP  Create();
-	//変更可◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+		//変更可◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
 		//共有する変数はここに追加する
-		DG::Image::SP  img;
+		DG::Image::SP img;
 	};
 	//-------------------------------------------------------------------
 	class  Object : public  BChara
@@ -46,8 +46,14 @@ namespace  Sprite
 		void  Render2D_AF();	//「2D描画」１フレーム毎に行う処理
 		bool  Finalize();		//「終了」タスク消滅時に１回だけ行う処理
 	public:
-	//変更可◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+		//変更可◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
 		//追加したい変数・メソッドはここに追加する
 		//BCharaに含まれないモノのみここに追加する
+		/*「変数宣言を書く」
+		「追加メソッドを書く」*/
+		BChara::DrawInfo Anim();
+		//接触時の応答処理（必ず受け身の処理として実装する）
+		//void Received(BChara* from_, AttackInfo at_);
 	};
 }
+
