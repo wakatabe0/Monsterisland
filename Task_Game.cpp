@@ -5,11 +5,14 @@
 #include  "Task_Game.h"
 #include  "Task_Title.h"
 //#include "Task_Ending.h"
+#include "Task_Gameover.h"
+#include "Task_Gameclear.h"
 #include  "Task_Map2D.h"
 #include  "Task_Player.h"
 //#include  "Task_Sprite.h"
 #include "Task_Enemy00.h"
 #include "Task_Arrow.h"
+#include "Task_HP.h"
 //#include "Task_Item.h"
 //#include "Task_Item01.h"
 //#include "Task_Item02.h"
@@ -40,6 +43,8 @@ namespace  Game
 
 		//★データ初期化
 		ge->camera2D = ML::Box2D(-200, -100, 480, 270);//取りあえず初期値設定
+		ge->GameoverFlag = false;//ゲームオーバーフラグ
+		ge->GameclearFlag = false;//ゲームクリアフラグ
 
 	   //★タスクの生成
 	   //マップの生成
@@ -56,7 +61,7 @@ namespace  Game
 		spr->target = pl;
 */
 		//敵の生成
-		for (int c = 0; c < 10; ++c) {
+		for (int c = 0; c < 8; ++c) {
 			auto ene = Enemy00::Object::Create(true);
 			ene->pos.x = 100.0f + c * 80;
 			ene->pos.y = 100;
@@ -65,7 +70,10 @@ namespace  Game
 		auto  ar = Arrow::Object::Create(true);
 		ar->pos.x = 32 * 23;
 		ar->pos.y = 16;
-
+		
+		//HPの生成
+		auto hp = HP::Object::Create(true);
+	
 		//アイテム仮配置
 		//Item00
 		/*for (int c = 0; c < 3; ++c) {
@@ -96,12 +104,24 @@ namespace  Game
 		ge->KillAll_G("プレイヤ");
 		ge->KillAll_G("敵");
 		ge->KillAll_G("矢印");
+		ge->KillAll_G("HP");
 
 		if (!ge->QuitFlag() && this->nextTaskCreate) {
 			//★引き継ぎタスクの生成
-			//エンディングへ
-			auto nextTask = Title::Object::Create(true);
-		}
+			
+			//ゲームオーバーへ
+			if (ge->GameoverFlag == true) {
+				auto nextTask = Gameover::Object::Create(true);
+			}
+			//ゲームクリアへ
+			else if (ge->GameclearFlag == true) {
+				auto nextTask = Gameclear::Object::Create(true);
+			}
+			//タイトルへ
+			else {
+				auto nextTask = Title::Object::Create(true);
+			}
+		}		
 
 		return  true;
 	}
@@ -114,6 +134,15 @@ namespace  Game
 			//自身に消滅要請
 			this->Kill();
 		}
+		//ゲームオーバーフラグ（true）になったら消滅要請
+		if (ge->GameoverFlag == true) {
+			this->Kill();
+		}
+		//ゲームクリアフラグ(ture)になったら消滅要請
+		if (ge->GameclearFlag == true) {
+			this->Kill();
+		}
+
 	}
 	//-------------------------------------------------------------------
 	//「２Ｄ描画」１フレーム毎に行う処理

@@ -1,18 +1,17 @@
 //-------------------------------------------------------------------
-//アイテム００（ポーション
+//空白のHP
 //-------------------------------------------------------------------
 #include  "MyPG.h"
-#include  "Task_Item02.h"
-#include "Task_Player.h"
+#include  "Task_HPfream.h"
 
-namespace  Item02
+namespace  HPfream
 {
 	Resource::WP  Resource::instance;
 	//-------------------------------------------------------------------
 	//リソースの初期化
 	bool  Resource::Initialize()
 	{
-		this->img = DG::Image::Create("./data/image/Item00.png");
+		this->img = DG::Image::Create("./data/image/hpfream.png");
 		return true;
 	}
 	//-------------------------------------------------------------------
@@ -33,7 +32,7 @@ namespace  Item02
 
 		//★データ初期化
 		this->render2D_Priority[1] = 0.7f;
-		this->hitBase = ML::Box2D(-16, -16, 32, 32);
+		//this->hitBase = ML::Box2D(-16, -16, 32, 32);
 		//★タスクの生成
 
 		return  true;
@@ -57,19 +56,19 @@ namespace  Item02
 	{
 		this->moveCnt++;
 		this->animCnt++;
-		if (this->unHitTime > 0) { this->unHitTime--; }
+		//if (this->unHitTime > 0) { this->unHitTime--; }
 
-		Motion nm = this->motion;
-		switch (this->motion) {
-		case Stand:
-			break;
-		case Lose:
-			this->pos.y -= 3;
-			if (this->moveCnt > 20) {
-				this->Kill();//一定時間経過後、消滅
-			}
-			break;
-		}
+		//Motion nm = this->motion;
+		//switch (this->motion) {
+		//case Stand:
+		//	break;
+		//case Lose:
+		//	this->pos.y -= 3;
+		//	if (this->moveCnt > 20) {
+		//		this->Kill();//一定時間経過後、消滅
+		//	}
+		//	break;
+		//}
 	}
 	//-------------------------------------------------------------------
 	//「２Ｄ描画」１フレーム毎に行う処理
@@ -86,8 +85,8 @@ namespace  Item02
 	BChara::DrawInfo Object::Anim()
 	{
 		BChara::DrawInfo imageTable[] = {
-			{ML::Box2D(-16,-16,32,32),ML::Box2D(0,0,32,32),ML::Color(1,1,1,0)},
-			{ML::Box2D(-16,-16,32,32),ML::Box2D(0,0,32,32),ML::Color(0.3f,1,1,0)},
+			{ ML::Box2D(-16,-16,32,32),ML::Box2D(0,0,32,32),ML::Color(1,1,1,1) },
+		{ ML::Box2D(-16,-16,32,32),ML::Box2D(0,0,32,32),ML::Color(0.3f,1,1,1) },
 
 		};
 		BChara::DrawInfo  rtv;
@@ -103,15 +102,14 @@ namespace  Item02
 	}
 	//-------------------------------------------------------------------
 	//接触時の応答処理（必ず受け身の処理として実装する）
-	void Object::Received(BChara* from_, AttackInfo at_)
+	/*void Object::Received(BChara* from_, AttackInfo at_)
 	{
 		if (this->motion != Stand) {
 			return;
 		}
 		this->UpdateMotion(Lose);
 		from_->hp += 5;
-		from_->unHitTime = 300;
-	}
+	}*/
 	//★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
 	//以下は基本的に変更不要なメソッド
 	//★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★

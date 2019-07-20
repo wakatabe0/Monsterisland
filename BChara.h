@@ -64,7 +64,7 @@ public:
 	//足元接触判定
 	//virtual  bool  CheckFoot();
 	//頭上接触判定
-	virtual  bool  CheckHead();
+	//virtual  bool  CheckHead();
 	//正面接触判定（再度ビューゲーム専用）
 	virtual bool CheckFront_LRFB();
 	//モーションを更新（変更なしの場合	false)

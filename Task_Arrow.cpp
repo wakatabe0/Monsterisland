@@ -1,9 +1,8 @@
 ﻿//-------------------------------------------------------------------
-//ゴール
+//矢印
 //-------------------------------------------------------------------
 #include  "MyPG.h"
 #include  "Task_Arrow.h"
-#include "Task_Gameclear.h"
 
 namespace Arrow
 {
@@ -73,22 +72,8 @@ namespace Arrow
 	//接触時の応答処理（必ず受け身の処理として実装する）
 	void Object::Received(BChara* from_, AttackInfo at_)
 	{
-
+		ge->GameclearFlag = true;
 		this->Kill();
-		//★データ＆タスク解放
-		ge->KillAll_G("フィールド");
-		ge->KillAll_G("プレイヤ");
-		ge->KillAll_G("敵");
-		ge->KillAll_G("矢印");
-
-
-		if (!ge->QuitFlag() && this->nextTaskCreate) {
-			//★引き継ぎタスクの生成
-			//ゲームクリアへ
-			auto nextTask = Gameclear::Object::Create(true);
-		}
-
-
 		//from_は攻撃してきた相手、カウンターなどで逆にダメージを与えたいときに使う
 	}
 	//-------------------------------------------------------------------

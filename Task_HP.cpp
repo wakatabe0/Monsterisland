@@ -1,93 +1,104 @@
-//-------------------------------------------------------------------
-//ƒAƒCƒeƒ€‚O1iƒ|[ƒVƒ‡ƒ“
+ï»¿//-------------------------------------------------------------------
+//HP
 //-------------------------------------------------------------------
 #include  "MyPG.h"
-#include  "Task_Item01.h"
-#include "Task_Player.h"
+#include  "Task_HP.h"
+#include  "Task_Player.h"
 
-namespace  Item01
+namespace  HP
 {
 	Resource::WP  Resource::instance;
 	//-------------------------------------------------------------------
-	//ƒŠƒ\[ƒX‚Ì‰Šú‰»
+	//ãƒªã‚½ãƒ¼ã‚¹ã®åˆæœŸåŒ–
 	bool  Resource::Initialize()
 	{
-		this->img = DG::Image::Create("./data/image/Item00.png");
-		return true;
+		this->img1 = DG::Image::Create("./data/image/hpfream.png");
+		this->img2 = DG::Image::Create("./data/image/hp.png");
+		return true; 
 	}
 	//-------------------------------------------------------------------
-	//ƒŠƒ\[ƒX‚Ì‰ğ•ú
+	//ãƒªã‚½ãƒ¼ã‚¹ã®è§£æ”¾
 	bool  Resource::Finalize()
 	{
-		this->img.reset();
+		this->img1.reset();
+		this->img2.reset();
 		return true;
 	}
 	//-------------------------------------------------------------------
-	//u‰Šú‰»vƒ^ƒXƒN¶¬‚É‚P‰ñ‚¾‚¯s‚¤ˆ—
+	//ã€ŒåˆæœŸåŒ–ã€ã‚¿ã‚¹ã‚¯ç”Ÿæˆæ™‚ã«ï¼‘å›ã ã‘è¡Œã†å‡¦ç†
 	bool  Object::Initialize()
 	{
-		//ƒX[ƒp[ƒNƒ‰ƒX‰Šú‰»
+		//ã‚¹ãƒ¼ãƒ‘ãƒ¼ã‚¯ãƒ©ã‚¹åˆæœŸåŒ–
 		__super::Initialize(defGroupName, defName, true);
-		//ƒŠƒ\[ƒXƒNƒ‰ƒX¶¬orƒŠƒ\[ƒX‹¤—L
+		//ãƒªã‚½ãƒ¼ã‚¹ã‚¯ãƒ©ã‚¹ç”Ÿæˆorãƒªã‚½ãƒ¼ã‚¹å…±æœ‰
 		this->res = Resource::Create();
 
-		//šƒf[ƒ^‰Šú‰»
-		this->render2D_Priority[1] = 0.7f;
-		this->hitBase = ML::Box2D(-16, -16, 32, 32);
-		//šƒ^ƒXƒN‚Ì¶¬
+		//â˜…ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
+		this->render2D_Priority[1] = 0.3f;
+		//â˜…ã‚¿ã‚¹ã‚¯ã®ç”Ÿæˆ
 
 		return  true;
 	}
 	//-------------------------------------------------------------------
-	//uI—¹vƒ^ƒXƒNÁ–Å‚É‚P‰ñ‚¾‚¯s‚¤ˆ—
+	//ã€Œçµ‚äº†ã€ã‚¿ã‚¹ã‚¯æ¶ˆæ»…æ™‚ã«ï¼‘å›ã ã‘è¡Œã†å‡¦ç†
 	bool  Object::Finalize()
 	{
-		//šƒf[ƒ^•ƒ^ƒXƒN‰ğ•ú
+		//â˜…ãƒ‡ãƒ¼ã‚¿ï¼†ã‚¿ã‚¹ã‚¯è§£æ”¾
 
 
 		if (!ge->QuitFlag() && this->nextTaskCreate) {
-			//šˆø‚«Œp‚¬ƒ^ƒXƒN‚Ì¶¬
+			//â˜…å¼•ãç¶™ãã‚¿ã‚¹ã‚¯ã®ç”Ÿæˆ
 		}
 
 		return  true;
 	}
 	//-------------------------------------------------------------------
-	//uXVv‚PƒtƒŒ[ƒ€–ˆ‚És‚¤ˆ—
+	//ã€Œæ›´æ–°ã€ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ æ¯ã«è¡Œã†å‡¦ç†
 	void  Object::UpDate()
 	{
 		this->moveCnt++;
 		this->animCnt++;
-		if (this->unHitTime > 0) { this->unHitTime--; }
+	
+		//if (this->unHitTime > 0) { this->unHitTime--; }
 
-		Motion nm = this->motion;
-		switch (this->motion) {
-		case Stand:
-			break;
-		case Lose:
-			this->pos.y -= 3;
-			if (this->moveCnt > 20) {
-				this->Kill();//ˆê’èŠÔŒo‰ßŒãAÁ–Å
-			}
-			break;
+		//Motion nm = this->motion;
+		//switch (this->motion) {
+		//case Stand:
+		//	break;
+		//case Lose:
+		//	this->pos.y -= 3;
+		//	if (this->moveCnt > 20) {
+		//		this->Kill();//ä¸€å®šæ™‚é–“çµŒéå¾Œã€æ¶ˆæ»…
+		//	}
+		//	break;
+		//}
+	}
+	//-------------------------------------------------------------------
+	//ã€Œï¼’ï¼¤æç”»ã€ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ æ¯ã«è¡Œã†å‡¦ç†
+	void  Object::Render2D_AF()
+	{
+		//HPï¼ˆç©ºç™½ï¼‰
+		for (int i = 0; i < 5;++i) {
+			ML::Box2D draw1(0 + i * 20, 0, 20, 20);
+			ML::Box2D src1(0, 0, 40, 40);
+			draw1.Offset(this->pos);
+			this->res->img1->Draw(draw1, src1);
+		}
+		//HP
+		for (int i = 0; i < ge->Insert_hp; ++i) {
+			ML::Box2D draw2(0 + i * 20, 0, 20, 20);
+			ML::Box2D src2(0, 0, 40, 40);
+			draw2.Offset(this->pos);
+			this->res->img2->Draw(draw2, src2);
 		}
 	}
 	//-------------------------------------------------------------------
-	//u‚Q‚c•`‰æv‚PƒtƒŒ[ƒ€–ˆ‚És‚¤ˆ—
-	void  Object::Render2D_AF()
-	{
-		BChara::DrawInfo di = this->Anim();
-		di.draw.Offset(this->pos);
-		//ƒXƒNƒ[ƒ‹‘Î‰
-		di.draw.Offset(-ge->camera2D.x, -ge->camera2D.y);
-		this->res->img->Draw(di.draw, di.src, di.color);
-	}
-	//-------------------------------------------------------------------
-	//ƒAƒjƒ[ƒVƒ‡ƒ“§Œä
-	BChara::DrawInfo Object::Anim()
+	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³åˆ¶å¾¡
+	/*BChara::DrawInfo Object::Anim()
 	{
 		BChara::DrawInfo imageTable[] = {
-			{ML::Box2D(-16,-16,32,32),ML::Box2D(0,0,32,32),ML::Color(1,0,1,1)},
-			{ML::Box2D(-16,-16,32,32),ML::Box2D(0,0,32,32),ML::Color(0.3f,0,1,1)},
+			{ ML::Box2D(-16,-16,32,32),ML::Box2D(0,0,32,32),ML::Color(1,1,1,1) },
+		{ ML::Box2D(-16,-16,32,32),ML::Box2D(0,0,32,32),ML::Color(0.3f,1,1,1) },
 
 		};
 		BChara::DrawInfo  rtv;
@@ -100,33 +111,28 @@ namespace  Item01
 			break;
 		}
 		return rtv;
-	}
+	}*/
 	//-------------------------------------------------------------------
-	//ÚG‚Ì‰“šˆ—i•K‚¸ó‚¯g‚Ìˆ—‚Æ‚µ‚ÄÀ‘•‚·‚éj
-	void Object::Received(BChara* from_, AttackInfo at_)
+	//æ¥è§¦æ™‚ã®å¿œç­”å‡¦ç†ï¼ˆå¿…ãšå—ã‘èº«ã®å‡¦ç†ã¨ã—ã¦å®Ÿè£…ã™ã‚‹ï¼‰
+	/*void Object::Received(BChara* from_, AttackInfo at_)
 	{
-		if (this->motion != Stand) {
-			return;
-		}
-		this->UpdateMotion(Lose);
 		from_->hp += 5;
-		from_->jumpPow += -1.0f;
-	}
-	//šššššššššššššššššššššššššššššššššššššššššš
-	//ˆÈ‰º‚ÍŠî–{“I‚É•ÏX•s—v‚Èƒƒ\ƒbƒh
-	//šššššššššššššššššššššššššššššššššššššššššš
+	}*/
+	//â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…
+	//ä»¥ä¸‹ã¯åŸºæœ¬çš„ã«å¤‰æ›´ä¸è¦ãªãƒ¡ã‚½ãƒƒãƒ‰
+	//â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…
 	//-------------------------------------------------------------------
-	//ƒ^ƒXƒN¶¬‘‹Œû
+	//ã‚¿ã‚¹ã‚¯ç”Ÿæˆçª“å£
 	Object::SP  Object::Create(bool  flagGameEnginePushBack_)
 	{
 		Object::SP  ob = Object::SP(new  Object());
 		if (ob) {
 			ob->me = ob;
 			if (flagGameEnginePushBack_) {
-				ge->PushBack(ob);//ƒQ[ƒ€ƒGƒ“ƒWƒ“‚É“o˜^
+				ge->PushBack(ob);//ã‚²ãƒ¼ãƒ ã‚¨ãƒ³ã‚¸ãƒ³ã«ç™»éŒ²
 			}
 			if (!ob->B_Initialize()) {
-				ob->Kill();//ƒCƒjƒVƒƒƒ‰ƒCƒY‚É¸”s‚µ‚½‚çKill
+				ob->Kill();//ã‚¤ãƒ‹ã‚·ãƒ£ãƒ©ã‚¤ã‚ºã«å¤±æ•—ã—ãŸã‚‰Kill
 			}
 			return  ob;
 		}
@@ -147,7 +153,7 @@ namespace  Item01
 	//-------------------------------------------------------------------
 	Object::Object() {	}
 	//-------------------------------------------------------------------
-	//ƒŠƒ\[ƒXƒNƒ‰ƒX‚Ì¶¬
+	//ãƒªã‚½ãƒ¼ã‚¹ã‚¯ãƒ©ã‚¹ã®ç”Ÿæˆ
 	Resource::SP  Resource::Create()
 	{
 		if (auto sp = instance.lock()) {
