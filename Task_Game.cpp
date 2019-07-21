@@ -4,18 +4,15 @@
 #include  "MyPG.h"
 #include  "Task_Game.h"
 #include  "Task_Title.h"
-//#include "Task_Ending.h"
 #include "Task_Gameover.h"
 #include "Task_Gameclear.h"
 #include  "Task_Map2D.h"
 #include  "Task_Player.h"
-//#include  "Task_Sprite.h"
 #include "Task_Enemy00.h"
 #include "Task_Arrow.h"
 #include "Task_HP.h"
-//#include "Task_Item.h"
-//#include "Task_Item01.h"
-//#include "Task_Item02.h"
+#include "Task_Item00.h"
+#include "Task_EventEngine.h"
 
 namespace  Game
 {
@@ -45,8 +42,10 @@ namespace  Game
 		ge->camera2D = ML::Box2D(-200, -100, 480, 270);//取りあえず初期値設定
 		ge->GameoverFlag = false;//ゲームオーバーフラグ
 		ge->GameclearFlag = false;//ゲームクリアフラグ
+		ge->evFlags.clear();//本来はNewゲーム＆Loadゲームでクリアする
 
 	   //★タスクの生成
+	  
 	   //マップの生成
 		auto  m = Map2D::Object::Create(true);
 		m->Load("./data/Map/map0.txt");
@@ -55,44 +54,27 @@ namespace  Game
 		pl->pos.x = 32 * 5;
 		pl->pos.y = 32 * 18;
 
-		//妖精の生成
-		/*auto  spr = Sprite::Object::Create(true);
-		spr->pos = pl->pos;
-		spr->target = pl;
-*/
 		//敵の生成
 		for (int c = 0; c < 8; ++c) {
 			auto ene = Enemy00::Object::Create(true);
 			ene->pos.x = 100.0f + c * 80;
 			ene->pos.y = 100;
 		}
-		//ゴールの生成
+		//矢印（次の場所へ）の生成
 		auto  ar = Arrow::Object::Create(true);
 		ar->pos.x = 32 * 23;
 		ar->pos.y = 16;
+		ar->eventFileName = "./data/event/Map1Load.txt";
 		
 		//HPの生成
 		auto hp = HP::Object::Create(true);
+
 	
-		//アイテム仮配置
-		//Item00
-		/*for (int c = 0; c < 3; ++c) {
+		//アイテム配置
 			auto item = Item00::Object::Create(true);
-			item->pos.x = 100.0f + c * 100;
-			item->pos.y = 80;
-		}*/
-		//Item01
-		/*for (int c = 0; c < 3; ++c) {
-			auto item = Item01::Object::Create(true);
-			item->pos.x = 500.0f + c * 100;
-			item->pos.y = 80;
-		}*/
-		//Item02
-	/*	for (int c = 0; c < 3; ++c) {
-			auto item = Item02::Object::Create(true);
-			item->pos.x = 112.0f + c * 100;
-			item->pos.y = 700;
-		}*/
+			item->pos.x = 688;
+			item->pos.y = 400;
+	
 		return  true;
 	}
 	//-------------------------------------------------------------------
@@ -103,8 +85,10 @@ namespace  Game
 		ge->KillAll_G("フィールド");
 		ge->KillAll_G("プレイヤ");
 		ge->KillAll_G("敵");
+		ge->KillAll_G("アイテム");
 		ge->KillAll_G("矢印");
 		ge->KillAll_G("HP");
+		ge->KillAll_G("ゴール");
 
 		if (!ge->QuitFlag() && this->nextTaskCreate) {
 			//★引き継ぎタスクの生成
@@ -135,13 +119,19 @@ namespace  Game
 			this->Kill();
 		}
 		//ゲームオーバーフラグ（true）になったら消滅要請
-		if (ge->GameoverFlag == true) {
+		else if (ge->GameoverFlag == true) {
 			this->Kill();
 		}
 		//ゲームクリアフラグ(ture)になったら消滅要請
-		if (ge->GameclearFlag == true) {
+		else if (ge->GameclearFlag == true) {
 			this->Kill();
 		}
+		//else if (inp.SE.down) {//←の条件を変える
+		//	//イベントエンジン起動
+		//	if (auto ev = EventEngine::Object::Create_Mutex()) {
+		//		ev->Set("./data/event/event0000.txt");
+		//	}
+		//}
 
 	}
 	//-------------------------------------------------------------------

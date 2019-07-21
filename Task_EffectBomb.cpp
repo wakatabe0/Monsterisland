@@ -12,7 +12,7 @@ namespace  EffectBomb
 	bool  Resource::Initialize()
 	{
 		this->img = DG::Image::Create("./data/image/effect/explode.png");
-//		this->bomSe = DM::Sound::CreateSE("./data/sound/shot.wav");
+		//this->bomSe = DM::Sound::CreateSE("./data/sound/bom.wav");
 
 		return true;
 	}
@@ -45,7 +45,7 @@ namespace  EffectBomb
 
 		this->scale = 1.f;
 
-//		this->res->bomSe->Play_Normal(false);
+		//this->res->bomSe->Play_Normal(false);
 
 		//se::LoadFile("bomb", "./data/sound/bom.wav");
 		//se::Play("bomb");
@@ -57,6 +57,7 @@ namespace  EffectBomb
 	//「終了」タスク消滅時に１回だけ行う処理
 	bool  Object::Finalize()
 	{
+
 		//★データ＆タスク解放
 		if (!ge->QuitFlag() && this->nextTaskCreate) {
 			//★引き継ぎタスクの生成

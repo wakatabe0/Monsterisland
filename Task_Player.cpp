@@ -5,7 +5,9 @@
 #include  "Task_Player.h"
 #include  "Task_Map2D.h"
 #include "Task_Shot01.h"
+#include "Task_Item00.h"
 #include "Task_Arrow.h"
+#include "Task_Goal.h"
 
 namespace  Player
 {
@@ -74,7 +76,7 @@ namespace  Player
 		ML::Vec2  est = this->moveVec;
 		this->CheckMove(est);
 
-		//ゴールとの当たり判定
+		//矢印との当たり判定
 		{
 			ML::Box2D me = this->hitBase.OffsetCopy(this->pos);
 			auto targets = ge->GetTask_Group_G<BChara>("矢印");
@@ -90,22 +92,38 @@ namespace  Player
 				}
 			}
 		}
+		//ゴールとの当たり判定
+		{
+			ML::Box2D me = this->hitBase.OffsetCopy(this->pos);
+			auto targets = ge->GetTask_Group_G<BChara>("ゴール");
+			for (auto it = targets->begin();
+				it != targets->end();
+				++it) {
+				//相手に接触の有無を確認させる
+				if ((*it)->CheckHit(me)) {
+					//相手にダメージの処理を行わせる
+					BChara::AttackInfo at = { 0,0,0 };
+					(*it)->Received(this, at);
+					break;
+				}
+			}
+		}
 		//アイテムの当たり判定
-		//{
-		//	ML::Box2D me = this->hitBase.OffsetCopy(this->pos);
-		//	auto targets = ge->GetTask_Group_G<BChara>("アイテム");
-		//	for (auto it = targets->begin();
-		//		it != targets->end();
-		//		++it) {
-		//		//相手に接触の有無を確認させる
-		//		if ((*it)->CheckHit(me)) {
-		//			//相手にダメージの処理を行わせる
-		//			BChara::AttackInfo at = { 0,0,0 };
-		//			(*it)->Received(this, at);
-		//			break;
-		//		}
-		//	}
-		//}
+		{
+			ML::Box2D me = this->hitBase.OffsetCopy(this->pos);
+			auto targets = ge->GetTask_Group_G<BChara>("アイテム");
+			for (auto it = targets->begin();
+				it != targets->end();
+				++it) {
+				//相手に接触の有無を確認させる
+				if ((*it)->CheckHit(me)) {
+					//相手にダメージの処理を行わせる
+					BChara::AttackInfo at = { 0,0,0 };
+					(*it)->Received(this, at);
+					break;
+				}
+			}
+		}
 		//カメラの位置を再調整
 		{
 			//プレイヤを画面の何処に置くか（今回は画面中央）
