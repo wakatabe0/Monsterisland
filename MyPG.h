@@ -7,6 +7,7 @@
 //-----------------------------------------------------------------------------------------------
 #include "Task_EffectCreate.h"
 
+#include "sound.h"
 
 //-----------------------------------------------------------------------------------------------
 namespace  MyPG
@@ -70,7 +71,7 @@ namespace  MyPG
 
 		//カメラの傾きをＹ軸に対する角度で取得する
 		//X軸＋方向を0度としたカメラの向きを返す。
-		float GetCameraDirectionY_XPlus0(UINT cn_);
+		//float GetCameraDirectionY_XPlus0(UINT cn_);
 
 	//ゲームエンジンに追加したいものは下に加える
 	//----------------------------------------------
@@ -78,7 +79,7 @@ namespace  MyPG
 		
 		//２Ｄカメラ座標
 		ML::Box2D				camera2D;	//  ２Ｄスクロール制御用
-
+		map<string, float> evFlags;			//イベントフラグ
 		DI::Mouse::SP  mouse;
 		DI::GamePad::SP  in1, in2, in3, in4;	//取り合えず４本
 		EffectCreate::Object::SP effectCreator;//エフェクト生成時に使用

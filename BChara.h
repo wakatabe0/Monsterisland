@@ -39,7 +39,7 @@ public:
 	float			decSpeed;		//	上下左右方向への移動の減衰量
 	int hp;							//キャラクタのヒットポイント
 	int unHitTime;					//一定時間無敵
-
+	string			eventFileName;
 
 	//メンバ変数に最低限の初期化を行う
 	//★★メンバ変数を追加したら必ず初期化も追加する事★★
@@ -54,6 +54,7 @@ public:
 		, decSpeed(0)
 		,hp(1)
 		,unHitTime(0)
+		,eventFileName("")
 	{
 	}
 	virtual  ~BChara() {}

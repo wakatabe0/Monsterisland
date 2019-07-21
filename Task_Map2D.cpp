@@ -1,5 +1,5 @@
 ﻿//-------------------------------------------------------------------
-//
+//マップ
 //-------------------------------------------------------------------
 #include  "MyPG.h"
 #include  "Task_Map2D.h"
@@ -183,10 +183,19 @@ namespace  Map2D
 				else if (9 == this->arr[y][x]) {//木右下
 					return true;
 				}
-				else if (63 == this->arr[y][x]) {//草むら
+				else if (40 == this->arr[y][x]) {//崖左
+					return true;
+				}
+				else if (42 == this->arr[y][x]) {//崖右
+					return true;
+				}
+				else if (55 == this->arr[y][x]) {//水面
 					return true;
 				}
 				else if (57 == this->arr[y][x]) {//海岸
+					return true;
+				}
+				else if (63 == this->arr[y][x]) {//草むら
 					return true;
 				}
 			}

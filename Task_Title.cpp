@@ -32,9 +32,12 @@ namespace  Title
 		this->res = Resource::Create();
 
 		//★データ初期化
-		this->logoPosY = -270;
 
 		//★タスクの生成
+
+		//BGM再生
+		bgm::LoadFile("titlebgm", "./data/sound/20160710tsuki.mp3");
+		bgm::Play("titlebgm");
 
 		return  true;
 	}
@@ -42,6 +45,9 @@ namespace  Title
 	//「終了」タスク消滅時に１回だけ行う処理
 	bool  Object::Finalize()
 	{
+		//BGMを止める
+		bgm::Stop("titlebgm");
+
 		//★データ＆タスク解放
 
 
@@ -57,18 +63,10 @@ namespace  Title
 	void  Object::UpDate()
 	{
 		auto inp = ge->in1->GetState();
-
-		this->logoPosY += 9;
-		if (this->logoPosY >= 0) {
-			this->logoPosY = 0;
-		}
-
-		if (this->logoPosY == 0) {
 			if (inp.ST.down) {
 				//自身に消滅要請
 				this->Kill();
 			}
-		}
 	}
 	//-------------------------------------------------------------------
 	//「２Ｄ描画」１フレーム毎に行う処理
@@ -77,7 +75,7 @@ namespace  Title
 		ML::Box2D  draw(0, 0, 480, 270);
 		ML::Box2D  src(0, 0, 480, 360);
 
-		draw.Offset(0, this->logoPosY);
+		draw.Offset(0, 0);
 		this->res->img->Draw(draw, src);
 	}
 

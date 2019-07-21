@@ -32,7 +32,6 @@ namespace  Gameclear
 		this->res = Resource::Create();
 
 		//★データ初期化
-		this->logoPosY = 270;
 
 		//★タスクの生成
 
@@ -59,17 +58,10 @@ namespace  Gameclear
 	{
 		auto inp = ge->in1->GetState();
 
-		this->logoPosY -= 9;
-		if (this->logoPosY <= 0) {
-			this->logoPosY = 0;
-		}
-
-		if (this->logoPosY == 0) {
 			if (inp.ST.down) {
 				//自身に消滅要請
 				this->Kill();
 			}
-		}
 	}
 	//-------------------------------------------------------------------
 	//「２Ｄ描画」１フレーム毎に行う処理
@@ -78,7 +70,7 @@ namespace  Gameclear
 		ML::Box2D  draw(0, 0, 480, 270);
 		ML::Box2D  src(0, 0, 480, 360);
 
-		draw.Offset(0, this->logoPosY);
+		draw.Offset(0, 0);
 		this->res->img->Draw(draw, src);
 	}
 

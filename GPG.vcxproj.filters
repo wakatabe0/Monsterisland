@@ -74,6 +74,21 @@
     <Filter Include="MyPG\Tasks\Arrow">
       <UniqueIdentifier>{3ec5de70-35e1-4b3a-9da3-90764e1b392e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MyPG\Event">
+      <UniqueIdentifier>{cd29e9c6-3579-4bdb-8c70-682bd129e44d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyPG\Tasks\Goal">
+      <UniqueIdentifier>{d3738aff-1ccb-4326-88c2-9e0b3f1f2475}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyPG\Sound">
+      <UniqueIdentifier>{dc546366-04bb-473e-8af0-1a94da49c043}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyPG\Tasks\Boat">
+      <UniqueIdentifier>{5cf92242-ac53-4501-821f-3164b86057fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyPG\Tasks\Item">
+      <UniqueIdentifier>{fdb28e80-0365-40c4-a5ea-cecaff5d44b7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="myLib.cpp">
@@ -172,6 +187,36 @@
     <ClCompile Include="Task_HP.cpp">
       <Filter>MyPG\Tasks\HP</Filter>
     </ClCompile>
+    <ClCompile Include="Task_Ev_FadeInOut.cpp">
+      <Filter>MyPG\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Task_Ev_Image.cpp">
+      <Filter>MyPG\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Task_Ev_Message.cpp">
+      <Filter>MyPG\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Task_Ev_System.cpp">
+      <Filter>MyPG\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Task_EventEngine.cpp">
+      <Filter>MyPG\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="AppearObject.cpp">
+      <Filter>MyPG</Filter>
+    </ClCompile>
+    <ClCompile Include="Task_Goal.cpp">
+      <Filter>MyPG\Tasks\Goal</Filter>
+    </ClCompile>
+    <ClCompile Include="sound.cpp">
+      <Filter>MyPG\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Task_Boat.cpp">
+      <Filter>MyPG\Tasks\Boat</Filter>
+    </ClCompile>
+    <ClCompile Include="Task_Item00.cpp">
+      <Filter>MyPG\Tasks\Item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="myLib.h">
@@ -269,6 +314,33 @@
     </ClInclude>
     <ClInclude Include="Task_HP.h">
       <Filter>MyPG\Tasks\HP</Filter>
+    </ClInclude>
+    <ClInclude Include="Task_Ev_FadeInOut.h">
+      <Filter>MyPG\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Task_Ev_Image.h">
+      <Filter>MyPG\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Task_Ev_Message.h">
+      <Filter>MyPG\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Task_EventEngine.h">
+      <Filter>MyPG\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="AppearObject.h">
+      <Filter>MyPG</Filter>
+    </ClInclude>
+    <ClInclude Include="Task_Goal.h">
+      <Filter>MyPG\Tasks\Goal</Filter>
+    </ClInclude>
+    <ClInclude Include="sound.h">
+      <Filter>MyPG\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Task_Boat.h">
+      <Filter>MyPG\Tasks\Boat</Filter>
+    </ClInclude>
+    <ClInclude Include="Task_Item00.h">
+      <Filter>MyPG\Tasks\Item</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

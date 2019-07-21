@@ -1,0 +1,21 @@
+fade_io>./data/image/FadeImage.bmp
+kill>敵
+kill>アイテム
+kill>矢印
+map>./data/Map/Map1.txt
+chara>プレイヤ,仮,posX = 160,posY = 592
+appear>Enemy00,112,112
+appear>Enemy00,80,272
+appear>Enemy00,80,368
+appear>Enemy00,560,560
+appear>Enemy00,336,176
+appear>Enemy00,464,560
+appear>Item00,80,560
+appear>Item00,336,176
+appear>Goal,160,50
+appear>Boat,160,16
+fade_io>in
+end>
+
+
+

@@ -3,6 +3,7 @@
 //-------------------------------------------------------------------
 #include  "MyPG.h"
 #include  "Task_Arrow.h"
+#include "Task_EventEngine.h"
 
 namespace Arrow
 {
@@ -59,12 +60,6 @@ namespace Arrow
 		switch (this->motion) {
 		case Stand:
 			break;
-		//case Lose:
-		//	this->pos.y -= 3;
-		//	if (this->moveCnt > 20) {
-		//		this->Kill();//一定時間経過後、消滅
-		//	}
-		//	break;
 		}
 
 	}
@@ -72,8 +67,12 @@ namespace Arrow
 	//接触時の応答処理（必ず受け身の処理として実装する）
 	void Object::Received(BChara* from_, AttackInfo at_)
 	{
-		ge->GameclearFlag = true;
-		this->Kill();
+		if (this->eventFileName!="") {
+			//イベントエンジン起動
+			if (auto ev = EventEngine::Object::Create_Mutex()) {
+				ev->Set("./data/event/Map1Load.txt");
+			}
+		}
 		//from_は攻撃してきた相手、カウンターなどで逆にダメージを与えたいときに使う
 	}
 	//-------------------------------------------------------------------
