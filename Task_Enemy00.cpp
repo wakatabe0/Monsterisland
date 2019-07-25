@@ -31,7 +31,7 @@ namespace  Enemy00
 		this->res = Resource::Create();
 		//★データ初期化
 		this->render2D_Priority[1] = 0.6f;
-		this->hitBase = ML::Box2D(-16, -16, 32, 32);
+		this->hitBase = ML::Box2D(-15, -15, 30, 30);
 		this->angle_LRFB = Back;
 		this->motion = Stand;
 		this->maxSpeed = 2.0f;	//最大移動速度（横）

@@ -12,6 +12,7 @@
 #include "Task_Arrow.h"
 #include "Task_HP.h"
 #include "Task_Item00.h"
+#include "Task_Boat.h"
 #include "Task_EventEngine.h"
 
 namespace  Game
@@ -89,6 +90,7 @@ namespace  Game
 		ge->KillAll_G("矢印");
 		ge->KillAll_G("HP");
 		ge->KillAll_G("ゴール");
+		ge->KillAll_G("船");
 
 		if (!ge->QuitFlag() && this->nextTaskCreate) {
 			//★引き継ぎタスクの生成

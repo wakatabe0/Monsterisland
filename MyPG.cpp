@@ -46,11 +46,16 @@ namespace MyPG
 		//	サウンドライブラリの初期化
 		{
 			this->dmi = DM::Obj::Create(wnd_);
-			//if (!this->dmi) {
-			//	//	環境の初期化に失敗
-			//	DestroyWindow(wnd_);
-			//	return false;
-			//}
+			if (!this->dmi) {
+				//	環境の初期化に失敗
+				DestroyWindow(wnd_);
+				return false;
+			}
+		}
+		//追加したサウンドライブラリ初期化
+		{
+			bgm::Init();
+			se::Init(wnd_);
 		}
 
 		//デバッグ用フォントの準備
@@ -111,6 +116,9 @@ namespace MyPG
 	}
 	MyGameEngine::~MyGameEngine()
 	{
+		//追加サウンドライブラリ初期化
+		se::Del();
+		bgm::Del();
 	}
 	//ゲームエンジンに追加したもののステップ処理
 	void MyGameEngine::UpDate()
@@ -119,6 +127,9 @@ namespace MyPG
 		this->dii->UpDate();
 		//	サウンドの更新(ストリーミング監視）
 		if (this->dmi) { this->dmi->UpDate(); }
+		//追加サウンドライブラリ更新
+		se::EndCheck();
+		bgm::EndCheck();
 	}
 
 	//2D描画環境のデフォルトパラメータ設定
