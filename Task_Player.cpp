@@ -37,7 +37,7 @@ namespace  Player
 
 		//★データ初期化
 		this->render2D_Priority[1] = 0.5f;
-		this->hitBase = ML::Box2D(-16, -16, 32, 32);
+		this->hitBase = ML::Box2D(-15, -15, 30, 30);
 		this->angle_LRFB = Front;
 		this->controller = ge->in1;
 		this->motion = Stand;		//キャラ初期状態
