@@ -31,7 +31,7 @@ namespace  Enemy00
 		this->res = Resource::Create();
 		//★データ初期化
 		this->render2D_Priority[1] = 0.6f;
-		this->hitBase = ML::Box2D(-16, -16, 32, 32);
+		this->hitBase = ML::Box2D(-15, -15, 30, 30);
 		this->angle_LRFB = Back;
 		this->motion = Stand;
 		this->maxSpeed = 2.0f;	//最大移動速度（横）
@@ -60,6 +60,7 @@ namespace  Enemy00
 	{
 		this->moveCnt++;
 		this->animCnt++;
+		if (this->unHitTime > 0) { this->unHitTime--; }
 		//思考・状況判断
 		this->Think();
 		//現モーションに対応した制御
@@ -89,7 +90,11 @@ namespace  Enemy00
 	//接触時の応答処理（必ず受け身の処理として実装する）
 	void Object::Received(BChara* from_, AttackInfo at_)
 	{
-
+		//敵には無敵時間を追加しない
+		//if (this->unHitTime > 0) {
+			//return;//無敵時間中はダメージを受けない
+		//}
+		this->unHitTime = 90;
 		this->hp -= at_.power;	//仮処理
 		if (this->hp <= 0) {
 			this->Kill();
@@ -103,6 +108,12 @@ namespace  Enemy00
 	//「２Ｄ描画」１フレーム毎に行う処理
 	void  Object::Render2D_AF()
 	{
+		if (this->unHitTime > 0) {
+			if ((this->unHitTime / 4) % 2 == 0) {
+				return;//8フレーム中4フレーム画像を表示しない
+			}
+		}
+
 		BChara::DrawInfo di = this->Anim();
 		di.draw.Offset(this->pos);
 		//スクロール対応

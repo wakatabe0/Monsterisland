@@ -53,8 +53,8 @@ namespace Arrow
 	//「更新」１フレーム毎に行う処理
 	void  Object::UpDate()
 	{
-		this->moveCnt++;
-		this->animCnt++;
+		/*this->moveCnt++;
+		this->animCnt++;*/
 
 		Motion nm = this->motion;
 		switch (this->motion) {

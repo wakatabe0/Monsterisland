@@ -47,8 +47,8 @@ namespace  EffectBomb
 
 		//this->res->bomSe->Play_Normal(false);
 
-		//se::LoadFile("bomb", "./data/sound/bom.wav");
-		//se::Play("bomb");
+		se::LoadFile("bomb", "./data/sound/bom.wav");
+		se::Play("bomb");
 
 		//★タスクの生成
 		return  true;
@@ -57,6 +57,8 @@ namespace  EffectBomb
 	//「終了」タスク消滅時に１回だけ行う処理
 	bool  Object::Finalize()
 	{
+		//BGMを止める
+		//se::Stop("bomb");
 
 		//★データ＆タスク解放
 		if (!ge->QuitFlag() && this->nextTaskCreate) {

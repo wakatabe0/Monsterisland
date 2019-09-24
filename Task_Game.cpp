@@ -12,6 +12,7 @@
 #include "Task_Arrow.h"
 #include "Task_HP.h"
 #include "Task_Item00.h"
+#include "Task_Boat.h"
 #include "Task_EventEngine.h"
 
 namespace  Game
@@ -74,6 +75,10 @@ namespace  Game
 			auto item = Item00::Object::Create(true);
 			item->pos.x = 688;
 			item->pos.y = 400;
+
+		//BGM再生
+		bgm::LoadFile("Mainbgm", "./data/sound/Lv20030826ishi.wav");
+		bgm::Play("Mainbgm");
 	
 		return  true;
 	}
@@ -81,6 +86,9 @@ namespace  Game
 	//「終了」タスク消滅時に１回だけ行う処理
 	bool  Object::Finalize()
 	{
+		//BGMを止める
+		bgm::Stop("Mainbgm");
+
 		//★データ＆タスク解放
 		ge->KillAll_G("フィールド");
 		ge->KillAll_G("プレイヤ");
@@ -89,6 +97,7 @@ namespace  Game
 		ge->KillAll_G("矢印");
 		ge->KillAll_G("HP");
 		ge->KillAll_G("ゴール");
+		ge->KillAll_G("船");
 
 		if (!ge->QuitFlag() && this->nextTaskCreate) {
 			//★引き継ぎタスクの生成

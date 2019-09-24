@@ -55,7 +55,7 @@ namespace  Item00
 	void  Object::UpDate()
 	{
 		this->moveCnt++;
-		this->animCnt++;
+		//this->animCnt++;
 		if (this->unHitTime > 0) { this->unHitTime--; }
 
 		Motion nm = this->motion;
@@ -63,7 +63,6 @@ namespace  Item00
 		case Stand:
 			break;
 		case Lose:
-			this->pos.y -= 3;
 			if (this->moveCnt > 20) {
 				this->Kill();//一定時間経過後、消滅
 			}
@@ -110,6 +109,9 @@ namespace  Item00
 		}
 		this->UpdateMotion(Lose);
 		from_->hp += 3;
+		//飲む音
+		se::LoadFile("drinking", "./data/sound/drinking1short.wav");
+		se::Play("drinking");
 	}
 	//★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
 	//以下は基本的に変更不要なメソッド

@@ -333,14 +333,14 @@
     <ClInclude Include="Task_Goal.h">
       <Filter>MyPG\Tasks\Goal</Filter>
     </ClInclude>
-    <ClInclude Include="sound.h">
-      <Filter>MyPG\Sound</Filter>
-    </ClInclude>
     <ClInclude Include="Task_Boat.h">
       <Filter>MyPG\Tasks\Boat</Filter>
     </ClInclude>
     <ClInclude Include="Task_Item00.h">
       <Filter>MyPG\Tasks\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="sound.h">
+      <Filter>MyPG\Sound</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
