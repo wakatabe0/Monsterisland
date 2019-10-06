@@ -115,8 +115,8 @@ namespace  Shot01
 					this->Kill();
 					//小爆発
 					//ML::Vec2 b = (*it)->pos;
-
-					ge->effectCreator->CreateEffect(ge->effectCreator->LITTLEBOMB,this->pos);
+					ge->effectCreator->CreateEffect(ge->effectCreator->LITTLEBOMB, this->pos);
+					
 					break;
 				}
 			}
