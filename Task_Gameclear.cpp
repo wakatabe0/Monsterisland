@@ -35,6 +35,10 @@ namespace  Gameclear
 
 		//★タスクの生成
 
+		//SE再生
+		se::LoadFile("gameclearSE", "./data/sound/w_blackout4.wav");
+		se::Play("gameclearSE");
+
 		return  true;
 	}
 	//-------------------------------------------------------------------
@@ -43,6 +47,8 @@ namespace  Gameclear
 	{
 		//★データ＆タスク解放
 
+		//SEを止める
+		se::Stop("gameclearSE");
 
 		if (!ge->QuitFlag() && this->nextTaskCreate) {
 			//★引き継ぎタスクの生成

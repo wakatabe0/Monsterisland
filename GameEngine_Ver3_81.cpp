@@ -216,7 +216,7 @@ void  GameEngine::B_StepSub_DebugOut( )
 //		D3DVIEWPORT9 vp  = {0,0,ge->screenWidth, ge->screenHeight, 0.0f, 1.0f};
 //		dg->Device( )->SetViewport(&vp);
 		this->dgi->Begin2D();
-		ML::Box2D  d(0,0,screenWidth,16);
+		ML::Box2D  d(0,21,screenWidth,16);
 		{
 			int  s  =  max(0, int(tasks_detect.size( )) - 10);
 			int id = s;

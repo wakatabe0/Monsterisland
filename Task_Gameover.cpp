@@ -35,6 +35,10 @@ namespace  Gameover
 
 		//★タスクの生成
 
+		//SE再生
+		se::LoadFile("gameoverSE", "./data/sound/w_requiem1.wav");
+		se::Play("gameoverSE");
+
 		return  true;
 	}
 	//-------------------------------------------------------------------
@@ -43,6 +47,8 @@ namespace  Gameover
 	{
 		//★データ＆タスク解放
 
+		//SEを止める
+		se::Stop("gameoverSE");
 
 		if (!ge->QuitFlag() && this->nextTaskCreate) {
 			//★引き継ぎタスクの生成
