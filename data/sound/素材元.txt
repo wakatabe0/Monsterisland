@@ -1,9 +1,15 @@
-ＢＧＭ素材
+ＢＧＭ・ＳＥ素材
 
 ↓おとわび（リンクアドレス）
 http://otowabi.com/
-(20030826ishi.mp3,20160710tsuki.mp3
+
+・つきあかりのたびびと/タイトル/20160710tsuki.mp3
+・遺志・光・黎明の旅路[音を小さく加工]/ゲーム本編BGM/Lv20030826ishi.wav
 
 ↓無料効果音で遊ぼう！
 https://taira-komori.jpn.org/arms01.html
-(bomb.mp3,drinking1.mp3
+
+・ボン！/爆弾（着弾音）/bomb.mp3
+・ごくごく飲む[短く加工]/ポーション回復時/drinking1short.wav
+・場面転換４（明るめ）[wavの加工]/ゲームクリア/w_blackout4.wav
+・レクイエム（バッハ）[wavに加工]１/ゲームオーバー/w_requiem1.wav

@@ -102,7 +102,7 @@ namespace MyPG
 
 
 		//背景色の設定（デフォルト）
-		this->dgi->EffectState().param.bgColor = ML::Color(0, 0.0f, 0.8f, 0.0f);
+		this->dgi->EffectState().param.bgColor = ML::Color(0, 0.0f, 0.0f, 0.0f);
 
 		//初期実行タスク生成＆ゲームエンジンに登録
 		auto  ft = Title::Object::Create(true);
